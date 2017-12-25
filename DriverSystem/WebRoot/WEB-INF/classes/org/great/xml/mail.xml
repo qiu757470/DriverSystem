@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.great.mapper.MailMapper">
+<select id="getMailInfoByStudentId" resultType="org.great.bean.Mail">
+select * from (   
+       select page.*,rownum rn from (select * from mail where student_id=#{student_id} and mail_type='回复') page    
+     
+       where #{pageMax} >= rownum    
+)     
+where rn > #{pageMin} 
+</select>
+<delete id="delRreplyInfoById">
+delete from mail where mail_id=#{mail_id}
+</delete>
+<select id="selectClickMailById" resultType="org.great.bean.Mail">
+select * from mail where mail_id=#{delRreplyInfoId}
+</select>
+<insert id="insertMail"  parameterType="org.great.bean.Mail">
+	insert into mail(mail_id,mail_theme,mail_content,mail_time,student_id,mail_type)
+	 values(SEQ_MAIL.nextval,#{mail_theme},#{mail_content},#{mail_time},#{student_id},'发送')
+
+</insert>
+<delete id="deleteAll" parameterType="java.util.List">
+delete from mail where mail_id in
+<foreach collection="list" index="index" item="item" open="(" separator="," close=")">   
+#{item}   
+</foreach>
+</delete>
+
+
+
+	<!-- Mail的结果映射 -->
+	<resultMap type="org.great.bean.Mail" id="mail">
+		<id property="mail_id" column="mail_id"/>
+		<result property="mail_theme" column="mail_theme"/>
+		<result property="mail_content" column="mail_content"/>
+		<result property="mail_time" column="mail_time"/>
+		<result property="mail_type" column="mail_type"/>
+		<result property="student_id" column="student_id"/>
+		<association property="student" column="student_id" javaType="org.great.bean.Student" select="findStudentById"></association>
+	</resultMap>
+	<!-- 学员的resultMap -->
+	<resultMap type="org.great.bean.Student" id="student">
+		<id property="student_id" column="student_id"/>
+		<result property="student_identification" column="student_identification"/>
+		<result property="student_name" column="student_name"/>
+		<result property="school_id" column="school_id"/>
+		<association property="school" column="school_id" javaType="org.great.bean.School" select="findSchoolById"></association>
+	</resultMap>
+	<!-- 驾校的resultMap -->
+	<resultMap type="org.great.bean.School" id="school">
+		<id property="school_id" column="school_id"/>
+		<result property="school_name" column="school_name"/>
+		<result property="school_province" column="school_province"/>
+		<result property="school_city" column="school_city"/>
+		<result property="school_address" column="school_address"/>
+		<result property="school_state" column="school_state"/>
+	</resultMap>
+	<!-- 通过id查询学员 -->
+	<select id="findStudentById" parameterType="java.lang.String" resultMap="student">
+		select student_identification,student_name,school_id from student where student_id = #{student_id}
+	</select>
+	<!-- 通过id查询驾校 -->
+	<select id="findSchoolById" parameterType="java.lang.String" resultMap="school">
+		select school_name,school_province,school_city,school_address,school_state from school where school_id = #{school_id}
+	</select>
+     <!-- 得到总记录数 -->
+     <select id="getTotalNum" resultType="java.lang.String">
+     	select max(rownum) from mail
+     </select>
+     
+     <!-- 通过学员id查找 -->
+     <select id="findByStudentId" resultType="org.great.bean.Mail" >
+	  	select * from mail where student_id = #{student_id}
+	 </select>
+	  
+    <!-- 得到所有的mail -->
+    <select id="findAllMail" resultMap="mail" parameterType="map">
+    	select m.*, s.student_identification, s.student_name, s.school_id, l.school_id, l.school_name, l.school_province, l.school_city, l.school_address, l.school_state
+   	  from mail m left outer join student s on m.student_id = s.student_id left outer join school l on s.school_id = l.school_id
+    	  <if test="mailOrderType != null and mailOrderType != '' and mailOrderType != 'school_id' and mailOrderType != 'defaultOrder'">
+    			order by m.${mailOrderType} ${orderSeq}
+    	  </if>
+    	  <if test="mailOrderType != null and mailOrderType != '' and mailOrderType == 'school_id' and mailOrderType != 'defaultOrder'">
+    			order by l.${mailOrderType} ${orderSeq}
+    	  </if>
+    </select>
+    <!-- 根据条件查找mail表 -->
+    <select id="searchMail" resultMap="mail" parameterType="org.great.bean.StudentSearch">
+   	 select m.*, s.student_identification, s.student_name, s.school_id, l.school_id, l.school_name, l.school_province, l.school_city, l.school_address, l.school_state
+   	  from mail m left outer join student s on m.student_id = s.student_id left outer join school l on s.school_id = l.school_id
+     	<trim prefix="WHERE" prefixOverrides="AND |OR"> 1 = 1
+     		<if test="student_identification != null and student_identification != ''">
+     			AND s.student_identification like  concat(concat('%',#{student_identification}),'%')
+     		</if>
+     		<if test="student_name != null and student_name != ''">
+     			AND s.student_name like  concat(concat('%',#{student_name}),'%')
+     		</if>
+     		<if test="school_province != null and school_province != '' and school_province != '全部'">
+     			AND l.school_province = #{school_province}
+     		</if>
+     		<if test="school_city != null and school_city != '' and school_city != '全部'" >
+     			AND l.school_city = #{school_city}
+     		</if>
+     		<if test="school_name != null and school_name != '' and school_name != '全部'">
+     			AND l.school_name = #{school_name}
+     		</if>
+     		<if test="mail_type != null and mail_type != '' and mail_type != '全部'">
+     			AND m.mail_type = #{mail_type}
+     		</if>
+     		<if test="mail_theme != null and mail_theme != '' and mail_theme != '全部'">
+     			AND m.mail_theme like  concat(concat('%',#{mail_theme}),'%')
+     		</if>
+     	</trim>
+     	   <if test="mailOrderType != null and mailOrderType != '' and mailOrderType != 'school_id' and mailOrderType != 'defaultOrder'">
+    			order by m.${mailOrderType} ${orderSeq}
+    	  </if>
+    	  <if test="mailOrderType != null and mailOrderType != '' and mailOrderType == 'school_id' and mailOrderType != 'defaultOrder'">
+    			order by l.${mailOrderType} ${orderSeq}
+    	  </if>
+    </select>
+    
+   <!--  根据id删除 -->
+   <delete id="deleteOneById" parameterType="java.lang.String">
+   		delete from mail where mail_id = #{id}
+   </delete>
+  <!--  根据id拼接的字符串删除 -->
+  <delete id="deleteByIds" parameterType="java.util.Arrays">
+  		delete from mail where mail_id in
+  		<foreach collection="ids" open="(" separator="," close=")" item="mail_id" >
+  			#{mail_id}
+  		</foreach>
+  </delete>
+   <!-- 通过id查找一条 -->
+   <select id="findOneById" parameterType="java.lang.String" resultMap="mail">
+   		select * from mail where mail_id = #{mail_id}
+   </select>
+   <!-- 通过时间和学员id查找一条 -->
+   <select id="getOneByTimeAndStuId" parameterType="java.lang.String" resultMap="mail">
+   		select * from mail where mail_time = #{mail_time} and student_id = #{student_id}
+   </select>
+   <!--通过bean新增 --> 
+   <insert id="addOneMail" parameterType="java.lang.String">
+   		insert into mail values (seq_mail.nextval, #{mail_theme}, #{mail_content}, #{mail_time}, #{mail_type}, #{student_id})
+   </insert>
+
+    <!--通过学员id删除 -->
+    <delete id="deleteByStudentId" parameterType="java.lang.String">
+    	delete from mail where student_id = #{student_id}
+    </delete>
+
+
+</mapper>

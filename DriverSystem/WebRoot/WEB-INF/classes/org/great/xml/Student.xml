@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管人员自身的后台的数据库调用的xml -->
+<mapper  namespace="org.great.mapper.StudentMapper">
+     <!-- 根据账号，密码查找到一个用户 -->
+      <select id="findUser" resultType="org.great.bean.Student">
+           select * from  Student
+      </select>
+      
+      
+      
+      <select id="selectStudentNameByStudentId" resultType="org.great.bean.Student">
+		select *
+		from student where student_id=#{student_id}
+	</select>
+	<!-- 修改密码 -->
+	<update id="updatePwd">
+		update STUDENT set
+		student_password=#{newStudentPassword} where student_id=#{student_id}
+	</update>
+	<select id="judgPassword" resultType="org.great.bean.Student">
+		select * from student where
+		student_password=#{oldStudentPassword} and student_id=#{student_id}
+	</select>
+	
+	  <!-- 通过驾校id查询学员-->
+	  <select id="findBySchoolId" parameterType="java.lang.String" resultType="org.great.bean.Student" >
+	  	select * from student where school_id = #{school_id}
+	  </select>
+	  
+	  <delete id="deleteByStudentId" parameterType="java.lang.String">
+		delete from student where student_id = #{student_id}
+	  </delete>
+	  
+	  <select id="findByStudentId" resultType="org.great.bean.Student" parameterType="java.lang.String">
+	  	select * from student where student_id = #{student_id}
+	  </select>
+	  
+	  <select id="findAllStudent" resultType="org.great.bean.Student" parameterType="java.lang.String">
+         select student_id from student where school_id=#{school_id}
+      </select>
+      
+      <select id="findStudentByAccAndPassword" resultType="org.great.bean.Student">
+	   select * from student where
+		student_password=#{user_password} and student_identification=#{user_account}
+	 </select>
+      
+      <select id="searchByRegisterTimeNum" parameterType="java.lang.String" resultType="java.lang.Integer">
+      		select max(rownum) from student where student_register_time like concat(concat('%',#{time}),'%') 
+      </select>
+      
+      
+       <select id="searchByRegisterTime" parameterType="java.lang.String" resultType="org.great.bean.Student">
+      		select * from student where student_register_time like concat(concat('%',#{time}),'%') 
+      </select>
+      
+      <select id="searchByGraduateTimeNum" parameterType="java.lang.String" resultType="java.lang.Integer"> 
+      		select max(rownum) from student where student_graduate_time like concat(concat('%',#{time}),'%') 
+      </select>
+      
+      <select id="searchByGraduateTime" parameterType="java.lang.String" resultType="org.great.bean.Student"> 
+      		select * from student where student_graduate_time like concat(concat('%',#{time}),'%') 
+      </select>
+</mapper>

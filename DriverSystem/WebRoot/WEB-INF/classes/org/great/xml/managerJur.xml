@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管用户表xml文件 -->
+<mapper  namespace="org.great.mapper.ManagerJurMapper">
+
+
+      <select id="findByManagerId" resultType="org.great.bean.ManagerJur" parameterType="java.lang.String">
+      		select * from manager_jur where school_manager_id = #{manager_id}
+      </select>
+      
+       <select id="findByJurTwoId" resultType="org.great.bean.ManagerJur" parameterType="java.lang.String">
+      		select * from manager_jur where manager_jur_two_id = #{manager_jur_two_id}
+       </select>
+      
+      <delete id="deleteByManagerId" parameterType="java.lang.String">
+      	delete from manager_jur where school_manager_id = #{manager_id}
+      </delete>
+      
+      <insert id="insertByBean" parameterType="org.great.bean.ManagerJur">
+      	insert into manager_jur values(#{school_manager_id},#{manager_jur_two_id}) 
+      </insert>
+      
+      <insert id="insertManagerJur" parameterType="java.lang.String">
+      	insert into manager_jur values(#{school_manager_id},#{manager_jur_two_id}) 
+      </insert>
+</mapper>

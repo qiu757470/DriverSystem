@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管用户表xml文件 -->
+<mapper  namespace="org.great.mapper.TransUserMapper">
+     <!-- 根据账号，密码查找到一个用户 -->
+      <select id="findTransUser" resultType="org.great.bean.TransUser" parameterType="java.lang.String">
+           select * from trans_user where trans_user_account=#{trans_user_account} 
+           and trans_user_password=#{trans_user_password}
+      </select>
+      
+   <!--    通过账号和密码修改用户 -->
+   <update id="revisePwdByAccount" parameterType="java.lang.String">
+   		update trans_user set trans_user_password = #{trans_user_password} where trans_user_account = #{trans_user_account}
+   </update>
+   
+   <!-- 修改用户的名称、省、市 -->
+   <update id="alterOneByNameAndPlace" parameterType="java.lang.String">
+   		update trans_user set trans_user_name = #{trans_user_name}, trans_user_province = #{trans_user_province}, trans_user_city = #{trans_user_city},
+   		trans_user_address = #{trans_user_address},trans_user_sex = #{trans_user_sex},trans_user_identification = #{trans_user_identification},
+   		trans_user_phone = #{trans_user_phone} where trans_user_account = #{trans_user_account}
+   </update>
+</mapper>

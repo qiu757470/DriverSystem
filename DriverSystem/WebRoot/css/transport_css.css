@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+
+body{
+	overflow-y: hidden;
+}
+
+a{
+	color:gray;	
+}
+a:linked{
+	color:gray;	
+}
+a:active{
+	color:gray;	
+}
+a:hover{
+	color:#d0d0d0;	
+}

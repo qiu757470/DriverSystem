@@ -1,0 +1,725 @@
+@charset "utf-8";
+/* CSS Document */
+
+.bg01{background:url(img/payBg01.gif) repeat-x 0 0;}
+.header{height:84px;margin-bottom:10px; _position:relative; _z-index:2;}
+.uc{height:30px;background:url(img/payBar.gif) no-repeat;}
+.login,.logon{height:30px;line-height:30px;color:#c7c7c7;font-family: "\5b8b\4f53", Arial, Helvetica, sans-serif;float:right;position:relative; z-index:12;}
+.login{width:300px;}
+.logA{height:30px;background-color:#525252; overflow:hidden; position:relative; z-index:2;}
+.logA span{height:30px;float:left;}
+.logA a{width:57px;height:27px;line-height:25px;margin-top:3px; text-align:center;color:#c7c7c7;float:left;_display:inline;}
+.logA a:hover{color:#FF0;}
+.logA a.a1{background:url(img/aLine.gif) no-repeat right 7px;margin-right:2px;}
+.logA a.aOn,.logA a.aOn:hover{color:#5b5b5b;background:url(img/logAon.gif) no-repeat;}
+
+.logDrag{width:300px;padding-bottom:10px;background:url(img/loB.png) no-repeat 0 bottom;_background:url(img/loB.gif) no-repeat 0 bottom; position:absolute;top:-240px;right:-8px; z-index:1;}
+.Tlogin{width:260px;margin:0 auto;padding:5px 8px 10px 32px; background:url(img/loT.png) no-repeat 0 0;_background:url(img/loT.gif) no-repeat 0 0;position:relative; z-index:0;}
+.Tlogin p{width:221px;height:32px;line-height:32px;position:relative}
+.Tlogin p.pWarn{height:21px;line-height:20px;margin-bottom:5px;color:#fe3c00;}
+.Tlogin p#p1,.Tlogin p#p2{margin-bottom:10px;}
+.Tlogin p label{width:36px; text-indent:-999em;float:left;}
+.Tlogin p input.i{width:175px;height:32px;line-height:32px;color:#d2d2d2;padding:0 5px;background:none;border:none;float:left; outline:none;}
+.Tlogin p input.ii{color:#666}
+.Tlogin p#p1.pOn input,.Tlogin p#p2.pOn input,.Tlogin p#validate.pOn input{color:#666}
+.Tlogin p#p1{background:url(img/loginBg.gif) no-repeat;}
+.Tlogin p#p1.pOn{background:url(img/loginBg.gif) no-repeat 0 -32px;}
+.Tlogin p#p1.pErr{background:url(img/loginBg.gif) no-repeat 0 -290px;}
+.Tlogin p#p2{background:url(img/loginBg.gif) no-repeat 0 -64px;}
+.Tlogin p#p2.pOn{background:url(img/loginBg.gif) no-repeat 0 -96px;}
+.Tlogin p#p2.pErr{background:url(img/loginBg.gif) no-repeat 0 -322px;}
+.Tlogin p#p1 span,.Tlogin p#p2 span,.Tlogin p#validate span{width:142px;height:32px;line-height:32px;color:#d2d2d2;padding:0 5px;position:absolute;left:36px;top:0px; z-index:1;}
+.Tlogin p#validate span{ width:83px;}
+.Tlogin p#p1 input,.Tlogin p#p2 input,.Tlogin p#validate input{position:absolute;left:36px;top:0;background-color:transparent; z-index:2;}
+.Tlogin p#p1 a.del{width:16px;height:16px;display:block;background:url(img/aDel.gif) no-repeat; text-indent:-999em;overflow:hidden; position:absolute;right:8px;top:8px; z-index:3;}
+.Tlogin p#p1 a.del:hover{background:url(img/aDel.gif) no-repeat 0 -16px;}
+.Tlogin p#p1 a.aRg,.Tlogin p#p2 a.aFd{width:50px;height:18px;line-height:18px;color:#00b2ed; position:absolute;right:-55px; top:8px;}
+.Tlogin p#p1 a.aRg:hover,.Tlogin p#p2 a.aFd:hover{color:#f60;}
+.Tlogin p#validate{margin-bottom:8px;background:url(img/loginBg.gif) no-repeat 0 -128px;}
+.Tlogin p#validate.pOn{background:url(img/loginBg.gif) no-repeat 0 -160px;}
+.Tlogin p#validate.pErr{background:url(img/loginBg.gif) no-repeat 0 -654px;}
+.Tlogin p#validate input{ width:78px;}
+.Tlogin p#validate img{ width:87px; height:30px;border:1px solid #c6c6c6; position:absolute; top:0px; left:132px;}
+.Tlogin p#validate a{width:36px;height:16px;line-height:16px;display:block;color:#fe7348; position:absolute;bottom:0;right:0;}
+.Tlogin p#validate a:hover{color:#00b2ed;}
+.Tlogin p#pCheck{height:20px;line-height:20px;_line-height:22px;margin-bottom:8px;overflow:hidden;}
+.Tlogin p#pCheck input{height:15px;width:15px;margin-top:2px;float:left;display:none;}
+.Tlogin p#pCheck label{width:50px;height:20px; text-indent:0;padding-left:16px;cursor:pointer;color:#7E7E7E;background:url(img/checkBox2.gif) no-repeat;float:left;}
+.Tlogin p#pCheck label.checked{background:url(img/checkBox2.gif) no-repeat 0 -20px;}
+.Tlogin p#pCheck a{width:50px;height:20px;line-height:20px;margin-left:8px;color:#7E7E7E;float:right;}
+
+
+.Tlogin p#pCheck a:hover,.uc p.pReg a:hover{color:#F60;}
+.Tlogin p.btn{width:220px;height:39px;margin-bottom: 8px;}
+.Tlogin button{width:220px;height:39px;line-height:37px; text-align:center; font-family:"Microsoft YaHei"; font-size:18px;display:block;color:#fff;background:url(img/loginBg.gif) no-repeat 0 -194px;border:none;cursor:pointer;}
+.Tlogin button.bOn{background:url(img/loginBg.gif) no-repeat 0 -233px;}
+
+
+.logo{height:52px;}
+.logo a{width:155px;height:52px;margin-right:10px;float:left;_display:inline;}
+.logo h2{height:50px;line-height:50px;color:#6e788f;font-size:18px;float:left;}
+
+.logon{width:163px;}
+.u1{height:27px;padding:3px 0 0 0;background-color:#525252; overflow:hidden; position:relative; z-index:2;}
+.u1 span{height:27px;line-height:27px;color:#c7c7c7;float:left;}
+.u1 a{width:95px;height:27px;line-height:27px;padding:0 20px 0 0;color:#c7c7c7;background:url(img/unBg.gif) no-repeat;float:left; overflow:hidden;}
+.u1 a i{width: 35px;height: 27px; background: url(img/unBg.gif) no-repeat 0 -54px; float:left;}
+.u1 a var{width: 60px;height: 27px;float:left;}
+.u1 a:hover{color:#FF0;background-position: 0 0;}
+.u1 a.aOn,.u1 a.aOn:hover{color:#525252;background-position: 0 -27px;}
+
+/*default*/
+.u1 a:hover i{color:#FF0;background-position: 0 -108px;}
+.u1 a.aOn i,.u1 a.aOn:hover i{color:#525252;background-position: 0 -81px;}
+
+/*wechat*/
+.u1 a i.ico_weixin{background-position: 0 -135px;}
+.u1 a:hover i.ico_weixin{color:#FF0;background-position: 0 -189px;}
+.u1 a.aOn i.ico_weixin,.u1 a.aOn:hover i.ico_weixin{color:#525252;background-position: 0 -162px;}
+/*QQ*/
+.u1 a i.ico_qq{background-position: 0 -216px;}
+.u1 a:hover i.ico_qq{color:#FF0;background-position: 0 -270px;}
+.u1 a.aOn i.ico_qq,.u1 a.aOn:hover i.ico_qq{color:#525252;background-position: 0 -243px;}
+/*sina*/
+.u1 a i.ico_weibo{background-position: 0 -297px;}
+.u1 a:hover i.ico_weibo{color:#FF0;background-position: 0 -351px;}
+.u1 a.aOn i.ico_weibo,.u1 a.aOn:hover i.ico_weibo{color:#525252;background-position: 0 -324px;}
+/*alipay*/
+.u1 a i.ico_alipay{background-position: 0 -378px;}
+.u1 a:hover i.ico_alipay{color:#FF0;background-position: 0 -432px;}
+.u1 a.aOn i.ico_alipay,.u1 a.aOn:hover i.ico_alipay{color:#525252;background-position: 0 -405px;}
+
+
+
+.u1 a:hover var{color:#FF0;background-position: 0 0;}
+.u1 a.aOn var,.u1 a.aOn:hover var{color:#525252;background-position: 0 -27px;}
+
+
+
+
+
+
+.uDown{width:123px;background:url(img/lonB.png) no-repeat 0 bottom;_background:url(img/lonB.gif) no-repeat 0 bottom;padding-bottom:9px;position:absolute;right:-8px;_right:-9px;top:-160px; z-index:1;}
+.uDown ul{width:115px;padding:0 8px 0 0;background:url(img/lonT.png) no-repeat;_background:url(img/lonT.gif) no-repeat;}
+.uDown ul li{width:115px;height:30px; vertical-align:top;}
+.uDown li a{width:75px;height:30px;line-height:30px;padding-left:40px;display:block;color:#5b5b5b;background-image:url(img/lOff.gif);}
+.uDown li a:hover{color:#fe3c00;background-image:url(img/lOn.gif);}
+.uDown li a.n1:hover{color:#5b5b5b;background-image:url(img/lOff.gif); cursor:default;}
+.uDown li a.n2{background-position:0 -30px;}
+.uDown li a.n3{background-position:0 -60px;}
+.uDown li a.n4{background-position:0 -90px;}
+.uDown li a.n5{background-position:0 -120px;}
+
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { .Tlogin p input.i{line-height:normal;} }
+
+
+.wrap{width:1002px;margin:0 auto;}
+.bigBox{width:976px;margin-bottom:10px;padding:12px;border:1px solid #d7e1f0; position:relative;}
+.payTab{width:976px;height:30px;margin-bottom:30px;border-bottom:3px solid #1999e3;}
+.payTab a{width:130px;height:30px;line-height:30px; margin-right:5px;text-align:center;  font-size:14px;color:#007eb2;background-color:#cde9f9;float:left;_display:inline;}
+.payTab a:hover,.payTab a.aOn{color:#fff;background-color:#1999e3;}
+
+.quickPay{width:500px;position:absolute;top:15px;right:12px; z-index:11; font-family: "\5b8b\4f53", Arial, Helvetica, sans-serif;}
+.quickPay a.qa{width:89px;height:27px;line-height:27px; text-align:center;display:block; color:#7e7e7e;background:url(img/pay.jpg) no-repeat 0 -124px;float:right;}
+.quickPay a.qa:hover,.quickPay a.aOn{color:#1999e3;background:url(img/pay.jpg) no-repeat 0 -151px;}
+.quickBox{width:522px;padding:0 4px 4px;background-color:#1999e3; position:absolute;right:0;top:30px;display:none;}
+
+.quickBox h5{height:30px;}
+.quickBox h5 span{width:320px;height:30px;line-height:30px;padding-left:15px;color:#fff;float:left;}
+.quickBox h5 span var{color:#ace3fc;margin-left:10px}
+.quickBox a.qClose{width:20px;height:20px;background:url(img/tClose2.gif) no-repeat;margin:5px 10px 0 0; text-indent:-999em;overflow:hidden;float:right;}
+.quickBox a.qClose:hover{background:url(img/tClose2.gif) no-repeat 0 -20px;}
+.qMain{}
+
+.qMain th{height:24px; text-align:center; font-weight:bold;color:#474747;background:url(img/thBg.jpg) repeat-x;}
+.qMain td{height:28px; text-align:center;color:#474747;background-color:#fff;}
+.qMain tr.tr2 td{background-color:#eefaff;}
+.qMain td a{width:54px;height:20px;line-height:20px;_line-height:22px; text-align:center;margin:0 auto;display:block;color:#fff;background:url(img/pay.jpg) no-repeat 0 -268px; overflow:hidden;}
+.qMain td a:hover{color:#fff;background:url(img/pay.jpg) no-repeat -64px -268px;}
+
+.payStep{padding-left:30px;}
+.payStep dl,.payBank dl,.payStep p{margin-bottom:25px;}
+.payStep dt,.payBank dt,.payStep p label,.paypal p label,.paypal dt,.eMail label{width:106px;line-height:30px; text-align:right; font-weight:bold;font-size:14px;color:#5c5c5c;float:left;}
+.payStep dd,.payBank dd,.paypal dd{float:left;}
+.nameDiv{height:55px; position:relative; z-index:9;}
+.nameDrag{width:212px;min-height:33px;_height:33px;font-family: "\5b8b\4f53", Arial, Helvetica, sans-serif; border:1px solid #1999e3;background-color:#fff;position:absolute;left:106px;top:29px; z-index:9;}
+.nameDrag ul{width:212px;}
+.nameDrag ul li{width:212px;height:32px; border-bottom:1px solid #e5e5e5;vertical-align:top;}
+.nameDrag a{width:200px;height:32px;line-height:32px;_line-height:34px;padding-left:12px;display:block;color:#4c4c4c; overflow:hidden;}
+.nameDrag a strong{ font-family:Arial, Helvetica, sans-serif;}
+.nameDrag a:hover{color:#1999e3;background-color:#f0f1f1;}
+
+.payStep p,.paypal p{height:30px;}
+.payStep p strong{height:30px;line-height:30px;margin-right:5px;color:#525252;font-size:20px;float:left;_display:inline;}
+.payStep p strong.str2{ font-size:26px; font-family:Arial, Helvetica, sans-serif;color:#f60;}
+.payStep p strong.str3{font-size:14px;}
+.payStep p span,.choiceT span,.paySel span{height:20px;line-height:20px;margin:5px 0 0 5px;color:#b76d43;float:left;_display:inline;}
+.payStep p span var,.choiceT span var,.paySel span var{margin: 0 5px;display:inline-block;color:#D94700;}
+.payStep p span.warn,.choiceT span.warn,.paySel span.warn{margin-left:5px;padding-left:20px;color:#f00;background:url("img/payIco.jpg") no-repeat 0 -424px;float:left;}
+.payStep p span.suc,.choiceT span.suc,.paySel span.suc{width: 50px;background: url("img/payIco.jpg") no-repeat 0 -388px }
+
+.payStep p var{height:32px;line-height:32px;color:#5c5c5c;float:left;}
+.payStep p em{height:32px;line-height:32px;color:#ff4200;float:left;}
+.payStep p a.aFor{width:65px;height:20px;line-height:20px;_line-height:22px;margin:6px 0 0 10px; text-align:center;color:#1999e3;/*padding-left:20px;background:url(img/payIco.jpg) no-repeat 0 -178px;*/float:left;_display:inline; _overflow:hidden;}
+.payStep p a.aFon{background:url(img/pay.gif) no-repeat 0 -177px;}
+.payStep p a.aBao{height:18px;line-height:18px;margin:4px 0 0 10px;color:#006ef5;float:left;}
+.payStep a.isA{width:102px;height:32px;line-height:32px;margin-right:10px; text-align:center;font-size:13px; color:#5a5a5a;background:url(img/pay.jpg) no-repeat 0 -60px;float:left; position:relative;}
+.payStep a.isA:hover,.payStep p a.aOn,.payStep a.aHover,.payStep .payMod a.aOn,.phonePay a.aOn,.vips a.aOn,.jinList a.aOn,.bigTab a.aOn{color:#1999e3;background:url(img/pay.jpg) no-repeat 0 -92px;}
+.payStep a i.iA{width:16px;height:16px;display:block; text-indent:-999em;overflow:hidden;background:url(img/payIco.jpg) no-repeat;position:absolute;right:0;top:0;}
+.payStep a i.iA2{background:url(img/payIco.jpg) no-repeat -17px 0;}
+.payStep a i.iA3{background:url(img/payIco.jpg) no-repeat -34px 0;}
+.payStep a i.iB{display:none;}
+.payStep a.aOn i.iB{width:14px;height:14px;display:block; text-indent:-999em;overflow:hidden;background:url(img/iOn.gif) no-repeat;position:absolute;right:0;bottom:0;}
+
+
+/*-------add:xian 2016.9.22---------*/
+.payStep p a.span3,.uImg a.span3{height:24px;line-height:24px;margin:3px 0 0 0;padding:0; cursor: pointer; float:left;}
+.payStep p a.span3 var,.payStep p span.span3 strong,.uImg a.span3 strong{height:24px;line-height:24px;color:#525252;font-size:12px;}
+.ico3{ width:24px; height:24px; margin-left: 5px; background-image:url(img/ico3.png); background-repeat:no-repeat; float:left;}
+.ico_qq{ background-position:0 -24px;}
+.ico_weibo{ background-position:0 -48px;}
+.ico_alipay{ background-position:0 -72px;}
+.ico_weixin{ background-position:0 0;}
+.payStep p a.span3 strong{height:24px;line-height:24px; font-weight: normal; font-size: 12px;}
+
+.uImg a.span3{margin:20px 0 0 5px;}
+.uImg a.span3 var,a.span3 var{display: none;}
+.uImg a.span3 strong{margin:0;float:left;}
+
+/*-------add:xian 2016.9.22---------*/
+
+
+
+.vipDl{}
+.vipDl dd{height:32px; position:relative;}
+.vips{height:30px;float:left;}
+a.checkVip{height:20px;line-height:20px;margin:5px 0 0 8px; color:#1999e3;float:left;}
+a.checkVip:hover{color:#1999e3;text-decoration:underline;}
+.vImg{width:510px;height:202px;position:absolute;bottom:32px;left:135px;display:none;}
+.payStep p a:hover{color:#ff5a00;}
+
+.i1{width:13px;height:13px;margin:8px 5px 0;float:left;}
+.i2{width:202px;height:28px;line-height:28px;padding:0 5px;font-family:Arial, sans-serif; font-size:14px;border:1px solid #d1d1d1;color:#a5a5a5;background-color:#fff;float:left;outline:none;}
+.i0{width:80px;}
+.iOn{color:#666;border:1px solid #00aeff;}
+.ii{color:#666;}
+.iErr{border:1px solid #F00;color:#F00;}
+
+.choiceBox{height:30px;margin-bottom:25px; position:relative; z-index:6;}
+.choiceT{height:30px;}
+.choiceT strong{width:106px;height:30px;line-height:30px; text-align:right;font-size:14px;color:#5c5c5c;float:left;}
+.choiceT h4{height:32px;float:left;}
+.choiceT h4 a,.payRmb dd a.payA{width:180px;height:30px;line-height:30px;margin-right:10px;padding:0 30px 0 4px; text-align:center;font-weight:bold;color:#515151;background:url(img/pay.jpg) no-repeat 0 0;float:left;}
+.choiceT h4 a.gSer{margin-right:0;}
+.choiceT h4 a:hover,.payRmb dd a.payA:hover,.choiceT h4 a.aOver,.choiceT h4 a.aOver:hover,.payRmb dd a.aOver,.payRmb dd a.aOver:hover{color:#1999e3;background:url(img/pay.jpg) no-repeat 0 -30px;}
+.choiceT h4 a.serDis:hover{color:#515151;background:url(img/pay.jpg) no-repeat 0 0; cursor:default;}
+.choiceT h4 a.aOn,.choiceT h4 a.aOn:hover,.payRmb dd a.aOn,.payRmb dd a.aOn:hover{color:#1999e3;background:url(img/pay.jpg) no-repeat 0 -613px;}
+.payRmb dd .selectShow .payA,.payRmb dd .selectShow .payA:hover{color:#1999e3;background:url(img/pay.jpg) no-repeat 0 -30px;}
+.quan dd a.payA:hover{color:#FF0;}
+
+.gDiv{width:550px;height:20px;line-height:20px;padding:5px 0 5px 20px;border:1px solid #8ce3f5; color:#5c5c5c;background-color:#eefaff;position:absolute;left:106px;top:0;}
+.gDiv em{font-weight:bold;}
+.gDiv a{color:#1999e7;margin-left:50px; }
+.gDiv a:hover{color:#1999e7;text-decoration:underline;}
+
+.choiceDiv,.qBox{position:absolute;left:70px;top:30px; z-index:99;}
+.qBox{left:100px;}
+.choiceDiv{width:490px;border:4px solid #1999e3;background-color:#fff;}
+.choiceGame,.choiceSer,.qBox{width:490px;}
+
+.hasPlay h5{height:26px;background-color:#1999e3; position:relative;}
+.gList,.allSer,.qWrap{}
+.gTab,.gTab2{height:24px;padding:4px 0 0 5px;background-color:#1999e3; _overflow:hidden; position:relative;}
+.gTab a,.gTab2 a{width:62px;height:24px;line-height:24px; margin-right:1px;text-align:center;font-weight:bold; font-family:Arial, Helvetica, sans-serif; font-size:12px;color:#fff;background-color:#47ade9;float:left;_display:inline;}
+.gTab a:hover,.gTab a.aOn,.gTab2 a:hover,.gTab2 a.aOn{color:#1999e3;background-color:#fff;}
+
+.bigTab{height:32px;padding:15px 0 15px 10px;}
+
+
+.si{width:98px;height:19px;background-color:#fff; position:absolute;right:0;bottom:3px;}
+.si input{width:73px;height:17px;line-height:17px;font-size:12px;padding:0 20px 0 2px;border:1px solid #fff;background:url(img/blank.gif) no-repeat;position:absolute;right:0;top:0; z-index:2; overflow:hidden;}
+.si span{width:72px;height:19px;line-height:19px;padding:0 2px 0 5px;display:block;color:#a5a5a5; font-weight:normal; font-family: "\5b8b\4f53"; position:absolute;left:0;bottom:0;_bottom:-2px;z-index:1;}
+.si a{width:18px;height:19px; text-indent:-999em;overflow:hidden;background:url(img/si.gif) no-repeat; position:absolute;right:0;top:0; z-index:3;}
+.si a.aClose{background:url(img/payIco.jpg) no-repeat 0 -216px;}
+
+#allList,#hasList{width:490px;padding-top:10px;position:relative;}
+.listCon {height: 240px;overflow: hidden; position: relative;}
+.noInfo{line-height:30px;margin:0 auto;padding-top:70px; text-align:center;}
+.noInfo strong{color:#1999e3;}
+.noInfo a{padding:3px 8px;margin-left:5px;color:#fff;background-color:#1999e3;}
+.noInfo a:hover{color:#fff;background-color:#47ade9;}
+
+.gList ul{position:absolute;left:0;}
+.gList ul li{width:80px;height:110px;margin:10px 0 0 13px;float:left;_display:inline;}
+.gList ul li a{width:80px;height:110px;display:block; cursor:pointer;}
+.gList ul li a img{width:74px;height:74px;padding:2px;border:1px solid #e8e8e8;}
+.gList ul li a span{width:80px;height:30px;line-height:30px;text-align:center; color:#5c5c5c;font-size:13px;display:block;}
+.gList ul li a:hover img{width:74px;height:74px;padding:0;border:3px solid #65c3fa;}
+.gList ul li a:hover span{color:#65c3fa;}
+
+.scrollBar{ width:14px; height:240px; position:absolute; right:4px; top:5px;}
+.scrollBar .barM{ width:14px; height:240px; position:absolute; top:0px; left:0px;}
+.scrollBar .bar{ width:14px; height:178px; background:url(img/bar.gif) no-repeat;position:absolute; top:0px; left:0px; cursor:pointer;}
+.scrollBar .barOn{background:url(img/barOn.gif) no-repeat;}
+.hasPlay h5 span.hsp,.hasSer h5 span.hsp{width:250px;height:26px;line-height:26px;padding-left:10px; color:#fff;}
+.allSer{width:490px;position:relative;}
+.allSerList{padding-top:10px;}
+.serCon{height:240px;position:relative; overflow:hidden;}
+.serList{ position:absolute;left:0;}
+.serList li{width:120px;height:18px;padding:8px 0 8px 10px;margin-left:15px;background:url(img/point.gif) no-repeat 0 center;vertical-align:top; overflow:hidden;float:left;_display:inline;}
+.serList li a{ font-family: "\5b8b\4f53", Arial, Helvetica, sans-serif;color:#5c5c5c;}
+.serList li a:hover{color:#f60;}
+
+.payBank{width:856px;margin-bottom:15px;}
+.payBank dd{width:750px;}
+.payMod{height:32px;position:relative; z-index:2;}
+.moreMod{width:102px;background:url(img/blank.gif) no-repeat;float:left; position:relative;}
+.moreMod a.isA2,.jinList a.isA2{width:102px;height:32px;line-height:32px;margin-right:5px;display:block; text-align:center;font-size:13px; color:#5a5a5a;background:url(img/pay.jpg) no-repeat -104px -60px;position:relative; z-index:1;}
+.moreMod a.isA2:hover,.payStep .moreMod a.aOn,.jinList a.isA2:hover,.jinList a#Ha.aOn{color:#1999e3;background:url(img/pay.jpg) no-repeat -104px -92px;}
+.moreDiv{width:98px;border-right:2px solid #1999e3;border-bottom:2px solid #1999e3;border-left:2px solid #1999e3;background-color:#fff;position:absolute;top:30px;left:0; z-index:2;display:none;}
+.moreDiv a{width:98px;height:32px;line-height:32px; text-align:center; font-size:13px;color:#505050;display:inline-block;}
+.moreDiv a:hover{color:#1999e3;}
+.moreDiv a.aBox{color:#999; cursor:default;position:relative; z-index:10;}
+.moreDiv a.aBox:hover{color:#999;}
+.aTip{width:134px;height:64px;background:url(img/aTip.gif) no-repeat; position:absolute; right:-120px;top:0px; z-index:10;display:none;}
+.moreModHover a.isA2 i.iB{display:none;}
+
+.payIs{height:20px;line-height:20px;margin-top:20px;}
+.payIs strong{color:#1999e7;font-weight:normal;}
+.bankList,.bankList ul,.phonePay,.phonePay ul{width:655px;}
+.bankList,.phonePay,.qyCard{margin-top:20px;}
+.bankCon{height:156px; overflow:hidden; position:relative;}
+.bankList ul li,.phonePay ul li{width:150px;height:34px;margin-right:10px;padding-bottom:20px;float:left;}
+.bankList ul,.bankList ul li{position:relative;}
+
+.phonePay ul li{padding-bottom:0}
+.bankList li a,.phonePay li a{width:125px;height:30px;border:2px solid #d9d9da;display:block; position:relative;}
+.bankList li a var,.phonePay li a var{width:14px;height:14px;background:url(img/iOn.gif) no-repeat; position:absolute;right:-2px;bottom:-2px;_bottom:-4px;display:none;}
+.bankList li a:hover,.bankList li a.aOn,.phonePay li a:hover,.phonePay li a.aOn{border:2px solid #1999e3;}
+.bankList li a.aOn var,.phonePay li a.aOn var{display:block;}
+.bankList p{margin-bottom:0;border-top:1px dashed #dbdbdb;}
+.bankList p a{width:75px;height:30px;line-height:30px;padding-right:15px;display:block;color:#1999e7;/*background:url(img/payIco.jpg) no-repeat 75px -107px;*/}
+
+.qyCard{}
+.cardDiv p{margin-bottom:15px;}
+.cardDiv p label{width:80px;}
+.cardDiv a{width:60px;height:20px;line-height:20px;margin:5px 0 0 5px;color:#1495E6;float:left;}
+.cardDiv a:hover{color:#F60; text-decoration:none;}
+.cd{height:90px;margin-bottom:12px;background:url(img/cd2.gif) no-repeat 0 bottom;}
+
+.yu{height:20px;margin-left:80px;}
+.yu a{color:#1495E6;margin-right:10px;float:left;}
+.yu a:hover{color:#F60; text-decoration:underline;}
+.yu var strong{color:#F60;}
+
+.phonePay{height:32px;}
+.paypalRecord a{color:#1999e7;}
+.paypalRecord a:hover{color:#f60;}
+.gPay{height:22px;line-height:22px;}
+.g0,.paypalRecord{margin-top:15px;}
+.gPay span,.gPay strong,.gPay i,.gPay em{float:left;}
+.gPay span,.gPay i{font-size:13px;}
+.gPay strong{font-size:14px;color:#f60;}
+.gPay i{margin:0 20px 0 5px}
+.gPay em{font-family: "\5b8b\4f53", Arial, Helvetica, sans-serif;color:#f60;}
+.payRmb{ position:relative;}
+.payRmb{z-index:3;}
+.payRmb dd a.payA{margin-right:0;}
+.paySel{height:30px;}
+.payRmb .gPay{margin:15px 0 5px 0;}
+.payRmb .amountSelect{float:left;}
+
+.selBox{width:210px;border:2px solid #1999e3;background-color:#fff;position:absolute;left:100px;top:28px;}
+.selList{width:210px;height:264px;font-family: "\5b8b\4f53", Arial, Helvetica, sans-serif; overflow:hidden; position:relative;}
+.selList ul{width:210px; position:absolute;left:0;}
+.selList ul li{width:210px;height:32px; border-bottom:1px solid #e5e5e5;vertical-align:top;}
+.selList a{width:198px;height:32px;line-height:32px;_line-height:34px;padding-left:12px;display:block;color:#4c4c4c; overflow:hidden;}
+.selList a strong{ font-family:Arial, Helvetica, sans-serif;}
+.selList a:hover{color:#1999e3;background-color:#f0f1f1;}
+
+.scrollBar2{ width:13px; height:264px; position:absolute; right:0; top:0;}
+.scrollBar2 .barM2{ width:13px; height:254px; position:absolute; top:5px; left:0px;}
+.scrollBar2 .bar2{ width:13px; height:100px; background:url(img/bar2.png) no-repeat;position:absolute; top:0px; left:0px; cursor:pointer;_background:none;
+_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/css/game2/img/bar2.png");}
+.scrollBar2 .barOn{background:url(img/bar2On.png) no-repeat;_background:none;
+_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/css/game2/img/bar2On.png");}
+
+.paySel .selBox,.paySel .selList,.paySel .selList ul,.paySel .selList ul li{width:210px;}
+.paySel .selBox{left:106px;top:28px;border:2px solid #1999e3;}
+.paySel .selList{height:264px;}
+.paySel .scrollBar2{height:264px;}
+.paySel .scrollBar2 .barM2{height:254px;}
+
+.daijin{width:424px;margin:0 0 25px 100px;border:1px solid #e2e2e2;}
+.daijin h5{height:28px;padding:0 10px;background-color:#f3f3f2; font-weight:normal;}
+.daijin h5 a{width:105px;height:28px;line-height:28px;padding-left:20px;font-size:13px;color:#09c;background:url(img/checkBox.gif) no-repeat;display:block;}
+.daijin h5 a.aOn{color:#09c;background:url(img/checkBox.gif) no-repeat 0 -28px;}
+.noLog,.isLog{padding:15px 12px 0;}
+.jinCheck{height:26px;margin-bottom:12px;}
+.jinCheck input{width:142px;height:24px;line-height:24px;padding:0 5px;border:1px solid #e3e3e3;color:#666;float:left;}
+.jinCheck input.iOn{color:#666;border:1px solid #00aeff;}
+.jinCheck button{width:78px;height:26px;line-height:26px;text-align:center;font-size:13px; font-weight:bold;color:#666;background:url(img/pay.jpg) no-repeat -1px -575px;float:left;}
+.jinCheck button.bOn{color:#666;background:url(img/pay.jpg) no-repeat -88px -575px;}
+.jinCheck span{height:26px;line-height:26px;margin-left:10px;color:#f60;float:left;_display:inline;}
+
+.jinCheck strong{width:154px;height:26px;line-height:26px;margin-right:10px;color:#666;float:left;}
+.jinList a.isA,.jinList a.isA2{margin-bottom:15px;}
+.jinList a.isA2{float:left;}
+
+#payRadio{width:525px;padding-top:5px;}
+#payRadio a{width:200px;height:20px;line-height:20px;padding-left:20px;margin-bottom:8px;cursor:pointer;color:#666;background:url(img/payIco.jpg) no-repeat 0 -280px;float:left;}
+#payRadio a:hover{color:#f60;background:url(img/payIco.jpg) no-repeat 0 -280px;}
+#payRadio a.aOn,#payRadio a.aOn:hover{color:#666;background:url(img/payIco.jpg) no-repeat 0 -300px;}
+#payRadio a em{color:#3499c8;}
+
+.payStep p.contact span{margin-left:10px;color:#999;font-family: "\5b8b\4f53", Arial;}
+.payStep p.contact span.warn{color:#f00;}
+.payBtn{height:39px;margin-bottom:40px;}
+.payBtn a,.payBtn button,p.cardBtn a{width:192px;height:39px;line-height:39px; text-align:center;margin-left:106px;font-size:17px;color:#fff;background: url("img/pay.jpg") no-repeat 0  -185px;display: block;}
+.payBtn a:hover,.payBtn button.bOn,p.cardBtn a:hover{color:#fff;background: url("img/pay.jpg") no-repeat 0  -224px;}
+
+.payTip{margin-left:10px;padding-left:20px;color:#5c5c5c;background:url(img/tip.gif) no-repeat 0 2px;font-family: "\5b8b\4f53", Arial;}
+.payTip h5{height:18px;line-height:18px;margin-bottom:10px; font-weight:normal;}
+.payTip p{height:auto;line-height:25px;}
+.payTip p a{color:#1999e3}
+.payTip p a:hover{color:#f60;}
+
+/*=-=============靓号购买===================*/
+.payNum{padding-top:35px;}
+.payNum p strong{ font-family:Arial, Helvetica, sans-serif; font-size:24px;}
+.payNum p a.aMo{height:16px;line-height:16px;margin:5px 0 0 10px;color:#0981f1; font-size:14px;text-decoration:underline;float:left;}
+.payNum p a.aMo:hover{color:#f60;}
+
+/*================国内汇款&&西联汇款&&paypal支付=========================*/
+
+.paySpecial{width:734px;padding-top:38px;}
+.step2{padding-left:60px;}
+.step2 h3{height:30px;line-height:30px;margin-bottom:15px;font-size:14px;color:#000;}
+.step2 p{font-size: 12px;height:auto;line-height: 30px; margin-left:30px;}
+
+.payContact,.payAddr,.process,.rule{margin-bottom:20px;}
+.payContact p{height:30px;font-size:13px;color:#5c5c5c;}
+.payContact p span{height:30px;float:left;}
+.payContact p strong,.payContact p em,.payContact p a{height:30px;float:left;}
+.payContact p strong{color:#f60;}
+.payContact p a{color:#1999e3; text-decoration:underline;}
+.payContact p a:hover{color:#f60;}
+
+.accountOversea {width:680px;margin:0 0 0 30px;border: 1px solid #e6b12f;color:#5c5c5c;}
+.accountOversea td {height:22px;padding: 4px 6px;border: 1px solid #e6b12f;}
+.accountOversea td.td0{ text-align:center;}
+.accountOversea td.td1{width:120px;background-color:#ffe4a2; text-align:right;}
+.accountOversea td.td2{background-color:#ffe4a2; text-align:right;}
+
+.process{}
+.process p.pImg{margin-bottom:15px;}
+.process p{color:#5c5c5c;}
+.process span{width:280px;line-height:20px;margin:10px 40px;padding: 6px 8px;color: #f60;font-weight: bold;background-color: #FFFFE1;border: 1px dashed #FF9900;display:block;}
+.process p strong{font-size:16px; font-family:Arial;}
+.process strong a{color:#0895DE; text-decoration:underline;}
+.process strong a:hover{color:#f60;}
+
+.rule{width:780px;}
+.rule h3{height:25px;line-height:25px;margin-bottom:10px;font-size:14px;}
+.rule p{color:#686868;height:auto;line-height:25px;margin:0 0 0 20px;}
+.rule p strong{color:#f60;}
+.rule p.piao{ text-align:right;}
+.rule p.piao a,.rule p a.aPay{color:#1495e6; text-decoration:underline;}
+.rule p.piao a:hover,.rule p a.aPay:hover{color:#F60;}
+.rule span{width: 400px;line-height: 2em;margin-left: 3em;font-weight: bold;padding: 6px 8px;color: #FF0000;background-color: #FFFFE1;display:block;}
+.rule span em{color:#666;font-weight: bold; font-family:Arial;}
+.ru2{background:url("img/payLine.gif") no-repeat center bottom;}
+
+/*==============paypal==================*/
+
+.paypal{padding:15px 0 0 35px;}
+.paypal h2{height:20px;line-height:20px;padding-left:15px;margin-bottom:15px;font-size:16px;color:#1999e8;background:url(img/payIco.jpg) no-repeat 0 -320px;}
+.paypal dl{height:30px;margin-bottom:20px; position:relative;}
+.paypal dl.zx1{ z-index:5;}
+.paypal dl.zx2{z-index:4;}
+.paypal dl.zx3{z-index:3;}
+.paypal dd a.aAdd{height:20px;line-height:20px;margin-top:4px;color:#1999e7;font-family: "\5b8b\4f53", Arial;float:left;}
+.paypal dd a.aAdd:hover{color:#f60;}
+.paypal p{margin-bottom:20px;}
+
+.paypal p label,.paypal dt,.eMail label{width:130px;color:#5c5c5c;}
+.paypal p span,#fileDiv span,.paypal dd span,.eMail span{ height:20px; line-height:20px;margin:5px 0 0 5px; color:#666666; float:left;_display:inline;}
+.paypal p span var,#fileDiv span var,.paypal dd var,.eMail span var{color:#fe5400;}
+.paypal p span.warn,#fileDiv span.warn,.paypal dd span.warn,.eMail span.warn{padding-left:20px;color:#F00;background:url(img/payIco.jpg) no-repeat 0 -424px;}
+.paypal p span.suc,#fileDiv span.suc,.paypal dd span.suc,.eMail span.suc{width:50px;background:url(img/payIco.jpg) no-repeat 0 -388px;}
+.eMail{height:30px;margin-bottom:30px; position:relative; z-index:2;}
+.eMail ul{ width:auto !important;width:212px;min-width: 212px;  background-color: #fff; border: 1px solid #00afe8;position: absolute;left: 130px; top: 25px;}
+.eMail ul li{ height:22px; }
+.eMail ul li.l1{height:26px;line-height:26px;}
+.eMail strong{margin-bottom:0px; padding-left:5px; font-weight:bold; color:#333; display:block;}
+.eMail ul li a{height:22px; line-height:22px; display:block; padding:0 5px;}
+.eMail ul li a:hover, .eMail ul li a.hover{ background-color:#d4f4ff; color:#0889D3;}  
+.tu{height:18px;line-height:18px;margin:0 0 20px 130px;color:#666;}
+.tu a{color:#1999e7;}
+.tu a:hover{color:#f60;}
+
+
+.paypal .msg{ padding:0 30px 10px 22px; margin:0 0 25px 0; line-height:30px; text-indent:2em;color:#444;}
+.paypal .drapDown{width:155px;height:30px;margin-right:10px; position:relative;float:left;}
+.paypal a.dragA{width:120px;height:30px;line-height:30px;padding:0 30px 0 5px;display:block;color:#6d6d6d;background:url(img/pay.jpg) no-repeat 0 -330px;}
+.paypal a.selOn,.paypal .selectShow .dragA{color:#3e567b;background:url(img/pay.jpg) no-repeat 0 -360px;}
+.paypal .dragDiv{width:151px;border-left:2px solid #00afe8;border-right:2px solid #00afe8;border-bottom:2px solid #00afe8;background-color:#fff;position:absolute;left:0;top:30px; display:none;}
+.dragCon{width:151px;height:150px; position:relative;overflow:hidden;}
+.dragCon ul{width:151px;position:absolute;left:0;}
+.dragCon ul li{width:151px;height:25px;}
+.paypal .dragDiv .dragCon a{width:146px;height:25px;line-height:25px;padding-left:5px;display:block;}
+.paypal .dragDiv .dragCon a:hover{background-color:#d4f4ff;color:#0889d3;}
+.scrollBar3{ width:13px; height:150px; position:absolute; right:0; top:0;}
+.scrollBar3 .barM3{ width:13px; height:140px; position:absolute; top:5px; left:0px;}
+.scrollBar3 .bar3{ width:13px; height:100px; background:url(img/bar2.png) no-repeat;position:absolute; top:0px; left:0px; cursor:pointer;_background:none;
+_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/css/game2/img/bar2.png");}
+.scrollBar3 .barOn{background:url(img/bar2On.png) no-repeat;_background:none;
+_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="/css/game2/img/bar2On.png");}
+.selectScrollUp,.selectScrollDown{display:none;}
+
+#fileDiv{ height:30px;margin-bottom:20px;position:relative; z-index:1;}
+#fileDiv label{width:130px; text-align:right; height:30px; line-height:30px; font-weight:bold;font-size:14px;color:#5c5c5c; float:left;}
+#fileDiv input.i3{width:112px;height:30px;line-height:30px;cursor:pointer;position:absolute;left:130px;top:0; z-index:2; opacity:0;filter:alpha(opacity:0);}
+
+.file{width:112px;height:30px;float:left;}
+#fileDiv button{width:112px;height:30px;border:none;background:url(img/pay.jpg) no-repeat 0 -534px; text-indent:-999em;overflow:hidden;float:left;}
+#fileDiv button.bOn{background:url(img/pay.jpg) no-repeat -112px -391px;}
+.paypal p.validate input{width:142px;}
+.paypal p.validate img{width:40px;height:30px;margin-left:5px;float:left;}
+.paypal p.validate a{height:20px;line-height:20px;margin:5px 0 0 5px;color:#f60;float:left;}
+.paypal p.validate a:hover{color:#39F;}
+.paypal p.payBtn button{border:none;margin:0 0 0 130px; font-family:"Microsoft Yahei";}
+
+/*==============pay uc==================*/
+
+.payUc{width:1000px;min-height:600px;_height:600px;margin-bottom:10px;border:1px solid #e8e8e8;background:url(img/payLeft.gif) repeat-y 0 0;}
+.payCol1{width:202px;}
+.uInfo{height:95px;padding:10px 10px 0;border-bottom:1px solid #e8e8e8;}
+
+.uImg{height:56px;margin-bottom:8px;}
+.uImg img{width:48px;height:48px;padding:4px;background:url(img/faceBg.gif) no-repeat;float:left;}
+.uImg strong{height:20px;line-height:20px;margin:20px 0 0 10px;font-size:14px;color:#444;float:left;}
+.uDiv{height:25px; font-family:"\5b8b\4f53", Arial; overflow:hidden;}
+.uDiv span,.uDiv em,.uDiv strong,.uDiv a{height:25px;line-height:25px;float:left;}
+.uDiv strong{margin-right:8px;color:#ec5909;font-size:16px;font-family:Arial;}
+.uDiv em{margin:0 8px 0 3px;}
+.uDiv a{color:#147cb8;}
+.uDiv a:hover{color:#147cb8; text-decoration:underline;}
+
+.payNav{}
+.payNav ul{}
+.payNav ul li{height:52px;background:url(img/line.gif) no-repeat center bottom;}
+.payNav ul li.liLast{background:none;}
+.payNav li a{width:152px;height:52px;line-height:52px;padding-left:50px;display:block; cursor:pointer;}
+.payNav li a span{padding-right:18px;font-size:16px;color:#444;border:1px solid #f8f8f8;}
+.payNav li a:hover span,.payNav li a.aOn span{color:#0090d9;background:url(img/nOn.gif) no-repeat right center;}
+.payCol3{width:766px;margin-right:10px;padding:20px 0;_display:inline;}
+.payCol3 h2{height:20px;line-height:20px;padding-left:15px;margin-bottom:10px;font-size:16px;color:#4a4a4a;background:url("img/payIco.jpg") no-repeat  0 -320px}
+.record{}
+.recordList{min-height:360px;_height:360px;}
+.selDiv{width:764px;height:30px;padding:15px 0;border-top:1px solid #e8e8e8;}
+.selDiv label{height:30px;line-height:30px; margin-left:12px;text-align:right;color:#4a4a4a;float:left;}
+.selDiv input{width:105px;}
+.selDiv a.dateDrap{width:175px;height:28px;line-height:28px;padding:0 35px 0 5px;color:#6d6d6d;background:url(img/pay.jpg) no-repeat 0 -644px;font-family:Arial, sans-serif; font-size:14px;float:left;}
+.selDiv a.dateDrap:hover{color:#6d6d6d;background:url(img/pay.jpg) no-repeat 0 -672px;}
+
+.selDiv span{height:30px;line-height:30px;padding:0 5px;color:#4a4a4a;float:left;}
+.selDiv .drapDown{width:115px;height:30px; position:relative;float:left;}
+.selDiv a.dragA{width:80px;height:30px;line-height:30px;padding:0 30px 0 5px;display:block;color:#6d6d6d;background:url(img/pay.jpg) no-repeat 0 -420px;}
+.selDiv a.selOn,.selDiv .selectShow .dragA{color:#3e567b;background:url(img/pay.jpg) no-repeat 0 -450px;}
+.selDiv .dragDiv{width:111px;height:150px;border-left:2px solid #00afe8;border-right:2px solid #00afe8;border-bottom:2px solid #00afe8;background-color:#fff;position:absolute;left:0;top:30px;display:none;}
+.selDiv .dragDiv .dragCon a{width:110px;height:20px;line-height:20px;padding-left:5px;display:block;}
+.selDiv .dragDiv .dragCon a:hover{background-color:#d4f4ff;color:#0889d3;}
+.selDiv .dragCon,.selDiv .dragCon ul,.selDiv .dragCon ul li{width:111px;}
+
+.selDiv button{width:77px;height:27px;line-height:25px;*line-height:29px;margin:2px 0 0 15px; text-align:center;border:none;color:#fff;background:url(img/pay.jpg) no-repeat 0 -482px;float:left;}
+.selDiv button.bOn{background:url(img/pay.jpg) no-repeat -80px -482px;}
+.selDiv a.aSe{height:20px;line-height:20px;margin:5px 0 0 15px;color:#4b4a4a;font-family: "\5b8b\4f53", Arial;float:left;}
+.selDiv a.aSe:hover,.selDiv a.aOn{color:#f60;}
+
+.isTable{width:766px;font-family: "\5b8b\4f53", Arial, Helvetica, sans-serif;}
+.isTable,.isTable th,.isTable td{border:1px solid #e8e8e8;}
+.isTable td.tc{color:#aaa;}
+
+.isTable tr.tr2{background-color:#f7f7f7;}
+.isTable th{background-color:#f1f1f1; font-weight:bold;}
+.isTable th,.isTable td{height:40px; text-align:center;}
+.isTable td strong{color:#f60;}
+.isTable td strong.s2{color:#17ab3a;}
+.isTable td span{height:22px;line-height:22px;color:#f60;display:inline-block;}
+.isTable td em{color:#f60;}
+.isTable td em.e2{color:#019230;}
+
+.isTable td a{width:45px;height:22px;line-height:22px; text-align:center;color:#fff;background:url(img/pay.jpg) no-repeat 0 -510px;display:inline-block;}
+.isTable td a:hover{color:#fff;background:url(img/pay.jpg) no-repeat -48px -510px;}
+
+.isTip{padding-top:30px;font-family: "\5b8b\4f53", Arial, Helvetica, sans-serif;}
+.isTip h4{height:20px;line-height:20px;}
+.isTip p{height:25px;line-height:25px;}
+.isTip p a{color:#39F;}
+.isTip p strong{color:#f60;}
+.isTip p a:hover{color:#39F; text-decoration:underline;}
+
+.setPassword{width:620px;margin:0 auto;padding-top:15px;}
+.setPassword h3{height:25px;line-height:25px;margin-bottom:10px;font-size:14px;color:#4b4a4a;}
+.dTip{height:20px;line-height:20px;padding-left:18px;margin-bottom:20px;color:#fe3c00;background:url(img/payIco.jpg) no-repeat 0 -340px;}
+
+.hasSet{height:75px;padding:0 0 15px 8px;margin-bottom:15px;border-bottom:1px solid #d2d2d2;}
+.hasSet dt{width:74px;height:74px;background:url(img/go.jpg) no-repeat 10px 10px;float:left;}
+.hasSet dd{width:150px;height:64px;padding-top:10px;margin-left:15px;float:left;_display:inine;}
+.hasSet dd h5{height:25px;line-height:25px;margin-bottom:10px; font-size:18px;color:#5dc003;}
+.hasSet dd p{height:20px;}
+.hasSet dd p a{color:#1999e3;}
+.hasSet dd p a:hover{color:#f60;}
+
+.divIn{}
+.divIn p{height:30px;margin-bottom:25px;}
+.divIn p label{width:90px;line-height:30px; text-align:right; font-weight:bold;color:#4a4a4a;float:left;}
+.divIn p strong{height:30px;line-height:30px;font-size:18px;color:#fe5a00;float:left;}
+.divIn p span{height: 28px;line-height: 28px;margin-left:5px;color: #666666;float: left;}
+.divIn p span var{color:#fe5400;}
+.divIn p span.warn{padding-left:20px;color:#d94700;background:url(img/payIco.jpg) no-repeat 0 -418px;} 
+.divIn p span.suc{width:50px;background:url(img/payIco.jpg) no-repeat 0 -386px;}    
+.divIn p em{width:70px; height:26px; line-height:26px;margin-left:5px;background:url(img/pwd_sprite.png) no-repeat; float:left;}
+.divIn p em.e1{background-position: 0 0;}
+.divIn p em.e2{background-position: 0 -44px;}
+.divIn p em.e3{background-position: 0 -89px;}
+.divIn p button.vb{width: 102px;height: 28px;line-height:28px;margin-left:10px; text-align:center;color:#4a4a4a;background: url("img/pay.jpg") no-repeat 0 -391px;font-family: "\5b8b\4f53", Arial, Helvetica, sans-serif;border:none;float: left; }
+.divIn p button.bOn{color:#4a4a4a;background: url("img/pay.jpg") no-repeat -112px -391px;}
+.divIn p.pBtn{height:39px;}
+.divIn p.pBtn button{width:192px;height:39px;line-height:39px; text-align:center;margin-left:90px;font-size:17px; font-family:"Microsoft Yahei";color:#fff;background: url("img/pay.jpg") no-repeat 0  -185px;float:left;}
+.divIn p.pBtn button.bOn{color:#fff;background: url("img/pay.jpg") no-repeat 0  -224px;}
+.divIn p.pBtn a{height:20px;line-height:20px;margin:18px 0 0 10px;color:#1999e3;float:left;}
+.divIn p.pBtn a:hover{color:#f60;}
+
+.pTip{padding-left:30px;}
+.pTip a{color:#39F;}
+.pTip a:hover{color:#39F; text-decoration:underline;}
+
+
+/*=================一卡通===============*/
+.eCard{width:1000px;margin-bottom:10px;padding:30px 0;border:1px solid #e8e8e8;}
+.cardMain{width:762px;height:395px;margin:0 auto 25px;background:url(img/eCardBg.jpg) no-repeat;}
+.cardMain h3{height:50px;margin-bottom:88px; text-indent:-999em;}
+.cardInput,.cardResult{width:435px;margin:0 auto;}
+.cardInput p,.cardResult p{height:30px;margin-bottom:25px;}
+.cardInput label,.cardResult label{width:110px;height:30px;line-height:30px; text-align:right;font-size:18px; font-family:"微软雅黑","宋体", sans-serif;float:left;}
+.cardInput input{width:200px;height:30px;line-height:30px;padding:0 5px;border:none;color:#505050;background:url(img/cardInput.jpg) no-repeat;float:left; outline:none;}
+.cardInput span{height:30px;line-height:30px;color:#ff6c00;margin-left:10px;float:left;}
+.cardInput .validate input{width:126px;background:url(img/cardInput2.gif) no-repeat;}
+.cardInput .validate img{width:60px;height:20px;margin:5px 0 0 10px;float:left;}
+.cardInput .validate a{height:20px;line-height:20px;margin-top:5px; text-decoration:none;color:#ff6c00;float:left;}
+.cardInput .validate a:hover{color:#F30;}
+p.cardBtn{height:54px;}
+p.cardBtn a.cb1,p.cardBtn a.cb2{width:162px;height:54px;margin-left:110px; text-indent:-999em;overflow:hidden;float:left;_display:inline;}
+p.cardBtn a.cb1{background:url(img/cardBtn.jpg) no-repeat 0 -76px;}
+p.cardBtn a.cb1:hover{background:url(img/cardBtn.jpg) no-repeat 0 -131px;}
+p.cardBtn a.cb2{background:url(img/cardBtn.jpg) no-repeat 0 -186px;}
+p.cardBtn a.cb2:hover{background:url(img/cardBtn.jpg) no-repeat 0 -241px;}
+a.cardCs{width:120px;height:18px;line-height:18px;padding:5px; text-align:center;background-color:#016dd2;color:#FF0; text-decoration:none;position:fixed;right:20px;bottom:0;_position:absolute;_top:expression(eval(document.documentElement.scrollTop+document.documentElement.clientHeight-this.offsetHeight-(parseInt(this.currentStyle.marginTop,10)||0)-(parseInt(this.currentStyle.marginBottom,10)||0)))}
+a.cardCs:hover{color:#fff;}
+
+.cardResult p label{margin-left:50px;}
+.cardResult span{height:30px;line-height:30px;font-size:18px; font-family:"微软雅黑","宋体", sans-serif;float:left;}
+.cardResult span strong{color:#1999e7;font-size:20px;}
+.cardResult p.cardBtn{padding-top:30px;}
+.cardInfo{width:761px;height:167px;margin:0 auto 36px;background:url(img/cardInfoBg.jpg) no-repeat center bottom;position:relative;}
+.cardInfo a{width:74px;height:23px;line-height:23px;margin-bottom:10px;color:#438600; text-decoration:none;float:right;}
+.cardInfo a:hover{color:#F60;}
+.cardTip{width:432px;height:138px;padding:20px 10px 0;background:url(img/cardTip.gif) no-repeat;position:absolute;right:0;top:15px;display:none;}
+.cardTip p{color:#ba4f00;line-height:22px;}
+.whatCard{ clear:both;}
+.whatCard h2{height:25px;line-height:25px;margin-bottom:20px;font-size:18px;color:#0683dc;font-family:"微软雅黑","宋体", sans-serif;}
+.whatCard p{font-size:14px;color:#3c3c3c;line-height:30px; text-indent:2em;}
+@media screen and (-webkit-min-device-pixel-ratio:0) {input.i2{line-height:normal;} }
+/*---分页---*/
+.pagnation{height:25px;padding-top:5px;text-align:center;text-align:right;border-bottom:1px solid #e8e8e8;border-left:1px solid #e8e8e8;border-right:1px solid #e8e8e8;font-family: "\5b8b\4f53", Arial, Helvetica, sans-serif;}
+.pagnation a{width:18px;height:18px;line-height:18px;font-weight:bold;display:inline-block;border:1px solid #666;color:#666;margin:0 3px; background:#fff; text-align:center;}
+.pagnation a:hover,.pagnation a.pageOn{color:#ff7200;text-decoration:none;border:1px solid #ff7200;}
+
+
+#footer{width:1002px;height:100px;margin:0 auto;padding-top:20px;border-top:2px solid #7f7f7f;clear:both;}
+.fLogo{width:148px;height:85px;margin-left:15px;border-right:1px solid #cdcdcd;_display:inline;}
+.fDiv{width:675px;height:85px;margin:0 18px;}
+.fDiv p{height:20px;line-height:20px;color:#919191;}
+.fDiv p a{color:#919191;}
+.fDiv p em{ font-family:Arial;}
+.fDiv p a:hover,.fDiv p.footP1 a:hover{color:#f60;}
+.fDiv p span{ font-family:Arial;}
+.fDiv p.footP1{margin-bottom:5px;color:#3a3a3a;}
+.fDiv p.footP1 a{height:20px;line-height:20px;color:#3a3a3a;float:left;}
+.fDiv p.footP1 span{height:20px;margin:0 10px; font-family:"\5b8b\4f53";float:left;}
+.fIco{height:41px;margin-top:40px;}
+.fIco a{width:37px;height:41px;margin-right:20px;float:left;}
+
+/*=-=============充值在线客服浮动===================*/
+.csFloat{height:139px; font-size:12px;position:fixed;top:230px;right:1px;  z-index:998; _position:absolute;_bottom:auto;_top:expression(eval(document.documentElement.scrollTop+230));}
+.csFloat ul{}
+.csFloat ul li{width:45px;height:45px;margin-bottom:2px; position:relative;}
+.csFloat li a{width:0;height:45px;line-height:45px;padding-left:45px;display:block;color:#2781b5;font-weight:bold; font-size:18px; position:absolute;right:0;top:0; overflow:hidden;}
+.csFloat li a.c1{background:#c0e8ff url(img/csBg.gif) no-repeat 0 0;}
+.csFloat li a.c2{background:#c0e8ff url(img/csBg.gif) no-repeat 0 -47px;font-size:14px;}
+.csFloat li a.c3{background:#c0e8ff url(img/csBg.gif) no-repeat 0 -94px;}
+
+/*===============*/
+ #allGameList li{display:none;}
+#allGameList .gameItemAllow{display:none;}
+#allGameList .gameItemAllowShow{display:block;}
+#allServerList li{display:none;}
+#allServerList .serverItemAllow{display:none;}
+#allServerList .serverItemAllowShow{display:block;}
+.allSerList{position:relative;}
+.moreModHover .moreDiv{display:block;}
+.moreModHover a.moreSelectItem{background:transparent url(/css/game2/img/pay.jpg) no-repeat scroll -104px -92px;}
+.payBank{z-index:4;position:relative;}
+.paypop{position:absolute;z-index:999;}
+.paypop_content{background-color:#FFF;}
+
+.loading{background:url(img/loading2.gif) no-repeat center center;}
+.lazyloadbg img{background:transparent url(img/loading2.gif) no-repeat center center;}
+.lazyloadbg .nolazyloadbg{background-image:none;}
+
+/*---//其他登录(2016/09/22)//---*/
+.otherLogin{ width:250px;height:30px;line-height:30px;padding-top:2px;margin-bottom:0;color:#7e7e7e;text-align:center;}
+.otherLogin .third{}
+.otherLogin .icon3{ width:30px; height:30px; display:block; float:left; margin:0; background-image:url(img/iconLogin.gif); background-repeat:no-repeat; overflow:hidden;}
+.otherLogin .qq{ background-position:-30px 0;}
+.otherLogin .qq:hover{ background-position:-30px -30px;}
+.otherLogin .weibo{ background-position:-60px 0;}
+.otherLogin .weibo:hover{ background-position:-60px -30px;}
+.otherLogin .alipay{ background-position:-90px 0;}
+.otherLogin .alipay:hover{ background-position:-90px -30px;}
+.otherLogin .weixin{ background-position:0 0;}
+.otherLogin .weixin:hover{ background-position:0 -30px;}
+.otherLogin span{ height:30px;line-height:30px;float:left; font-size:12px; color:#7e7e7e;}
+
+/*---//2016.10.13积分明细//---*/
+.isTable td.detail{ padding:80px 0;}
+.isTable td.detail{ background-color:#fff;}
+.isTable td.detail .detailBtn{ width:164px; height:41px; line-height:41px; color:#56acca; text-align:center; display:block; margin:0 auto; background:url(img/tBtn.jpg) no-repeat 0 -409px;}
+.isTable td.detail .detailBtn:hover{ background:url(img/tBtn.jpg) no-repeat 0 -451px; color:#56acca;}
+
+/*---//2017.04.24实名认证//---*/
+*:focus {outline:none;}
+input,button,select,textarea{outline:none}
+.certification{ height:30px; line-height:30px; margin:0; color:#000; position:relative; z-index:10;}
+.certification .validation{ background:url(img/payIco.jpg) no-repeat 106px -450px; padding-left:124px; height:36px; line-height:36px; position:absolute; top:-18px; left:0;}
+.validation .verify,.validation span,.validation .verDiv{ float:left;}
+.validation .verify{ height:36px; display:block; color:#3ea9e8; text-decoration:underline; padding:0 2px 0 6px;}
+.validation .verify:hover{ color:#f60;}
+.validation .verDiv{ background:url(img/verify.jpg) no-repeat; width:390px; height:24px; line-height:24px; padding:6px 0 6px 36px; margin-bottom:0;}
+.validation .verDiv label{ width:57px; padding-right:2px; height:24px; line-height:24px; font-size:12px; font-weight:normal; color:#5c5c5c; float:left;}
+.validation .verDiv input{ width:70px; height:22px; line-height:22px; border:1px solid #cde9f9; color:#939393; font-style:italic; float:left; text-align:center; font-size:12px;}
+.validation .verDiv input.i{ font-style:normal;}
+.validation .verDiv input.iErr{ border:1px solid #F00;}
+.validation .verDiv input.ID{ width:152px;}
+.validation .verDiv span,.validation .verDiv span.suc,.validation .verDiv span.warn{ width:16px; height:24px; margin:0; overflow:hidden; padding:0;}
+.validation .verDiv span{ display:block; background:url(img/payIco.jpg) no-repeat 0 -534px;}
+.validation .verDiv span.suc{ background-position:0 -486px;}
+.validation .verDiv span.warn{ background-position:0 -510px;}
+
+/*---//2017.08.22支付密码//---*/
+.dTips{ font-size:14px; color:#ec5909;}
+.divIn p.pBtn .bind{width:192px;height:39px;line-height:39px; text-align:center;margin:50px 0 0 130px;font-size:17px; font-family:"Microsoft Yahei";color:#fff;background: url("img/pay.jpg") no-repeat 0  -185px;float:left; display:block;}
+.divIn p.pBtn .bind:hover{color:#fff;background: url("img/pay.jpg") no-repeat 0  -224px;}

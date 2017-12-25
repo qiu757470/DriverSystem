@@ -1,0 +1,243 @@
+@charset "utf-8";
+/* CSS Document */
+.tan{width:439px;border:4px solid #1999e4; z-index:999;}
+.tan h3,.numTan h3{height:26px;background-color:#1999e4;}
+.tan h3 span,.numTan h3 span{width:180px;height:20px;line-height:20px;padding-left:13px;font-size:14px;color:#fff;float:left;}
+.tan h3 a,.numTan h3 a{width:20px;height:20px;margin-right:5px;background:url(img/tClose.gif) no-repeat; text-indent:-999em;overflow:hidden;float:right;_display:inline;}
+.tanM{width:423px;min-height:150px;_height:150px;padding:0 8px;}
+.paySure{}
+.paySure ul{width:376px;margin:0 auto;padding:15px 0 10px 35px;border-bottom:1px solid #e1e1e1;}
+.paySure ul li{height:26px;line-height:26px;margin-bottom:8px;color:#434343;  font-size:14px;vertical-align:top;}
+.paySure li span{width:70px;height:26px;float:left;}
+.paySure li p{height:26px;float:left;}
+.paySure li p var{color:#ff5a00;font-size:14px;}
+.paySure li p strong.str2{color:#ff5a00;}
+.paySure li p input{width:130px;height:24px;line-height:24px;padding:0 5px;border:1px solid #d1d1d1;background-color:#fff;}
+.paySure li p input.iOn{color:#03ADE8;border:1px solid #03ADE8;}
+.paySure li p a{color:#1999e7; font-family:"\5b8b\4f53", Arial; font-size:12px;}
+.paySure li p a:hover{color:#f60;}
+.tTip{width:370px;margin:0 auto;padding:20px 0 10px}
+.tTip h5{line-height:30px;margin-bottom:5px; text-align: center; color:#4a4a4a;font-size:16px;}
+.tTip h5.h02{color:#326a9d;}
+.tTip h5.h03{color:#fe3c00;}
+.tTip p{line-height:25px;color:#434343;font-size:13px;}
+.tTip p.pL span{height:26px;display:block;padding-top:6px;}
+.tTip p.pL input{  width: 120px;height: 24px;line-height:24px; padding: 0 5px;border: 1px solid #d1d1d1;color: #b1b1b1;}
+.tTip p.pL input.iOn{border:1px solid #00aeff;color:#666;}    
+.tTip p strong{color:#f60;}
+.tTip p a{color:#00B2ED;}
+.tTip p a.aCopy{color:#434343;}
+.tTip p em,.tTip p a:hover,.tTip p a.aCopy:hover{color:#f60;}
+.tBtn{height:32px;padding:15px 0;}
+.tBtn a{width:122px;height:32px;line-height:32px; font-size:14px; font-weight:bold; text-align:center;color:#fff;background:url(img/tBtn.jpg) no-repeat;float:left;_display:inline;}
+.tBtn a:hover{color:#fff;background:url(img/tBtn.jpg) no-repeat 0 -39px;}
+.tBtn a.b1{background:url(img/tBtn.jpg) no-repeat 0 -311px;}
+.tBtn a.b1:hover{background:url(img/tBtn.jpg) no-repeat 0 -276px;}
+.tBtn a.b2{color:#373737;background:url(img/tBtn.jpg) no-repeat 0 -78px;}
+.tBtn a.b2:hover{color:#373737;background:url(img/tBtn.jpg) no-repeat 0 -117px;}
+.tBtn a.al{margin:0 20px 0 80px;}
+.tBtn a.am{margin-left:140px;}
+
+/*-----  choose nummber pop  -------*/
+
+.numTan{width:652px;border:4px solid #1999e4;}
+
+.numBox{}
+.numBox{width:652px;padding-top:20px;}/*设置高度。。测试用*/
+.numBox ul{}
+.numBox ul li{height:20px;padding:10px 20px;border-bottom:1px solid #e5e5e5; vertical-align:top; overflow:hidden;}
+.numBox li strong{height:20px;line-height:20px;font-size:14px;color:#f60;float:left;}
+.numBox li p{height:20px;float:left;}
+.numBox li p a{width:60px;height:20px;line-height:20px;padding:0 5px;margin-left:13px; text-align:center;color:#474747;font-weight:bold;float:left;}
+.numBox li p a:hover{color:#f60;}
+.numBox li p a.aOn,.numBox li p a.aOn:hover{color:#fff;background-color:#1999e3;}
+.numBox li a.aTn{width:54px;height:20px;line-height:20px;margin-left:14px; text-align:center;font-family:"\5b8b\4f53", Arial; color:#fff;background:url(img/tBtn.jpg) no-repeat 0 -215px;float:left;}
+.numBox li a.aTn:hover{color:#fff;background:url(img/tBtn.jpg) no-repeat 0 -235px;}
+
+.numSel{height:28px;line-height:28px;padding:5px 20px;}
+.numSel span,.numSel strong{float:left;}
+.numSel span{color:#666;font-family:"\5b8b\4f53", Arial;}
+.numSel strong{color:#f60;font-size:20px;}
+.numSel button,.numSel a{width:80px;height:28px;color:#fff;background:url(img/tBtn.jpg) no-repeat 0 -158px; font-family:"Microsoft YaHei";float:right;}
+.numSel button.bOn{color:#fff;background:url(img/tBtn.jpg) no-repeat 0 -186px;}
+.numSel a{line-height:28px;margin-right:10px; text-align:center;background:url(img/tBtn.jpg) no-repeat 0 -352px;}
+.numSel a:hover{color:#fff;background:url(img/tBtn.jpg) no-repeat 0 -380px;}
+
+/*--------------登陆------------------
+
+.Tlogin{width:262px;margin:0 auto;padding:10px 0 20px; position:relative;}
+.Tlogin p{width:261px;height:32px;line-height:32px;position:relative}
+.Tlogin p.pWarn{height:21px;line-height:20px;margin-bottom:5px;color:#ff2501;}
+.Tlogin p#p1,.Tlogin p#p2{margin-bottom:13px;}
+.Tlogin p label{width:36px; text-indent:-999em;float:left;}
+.Tlogin p input.i{width:215px;height:32px;line-height:32px;color:#d2d2d2;padding:0 5px;background:none;border:none;float:left; outline:none;}
+.Tlogin p input.ii{color:#666}
+.Tlogin p#p1.pOn input,.Tlogin p#p2.pOn input,.Tlogin p#validate.pOn input{color:#666}
+
+.Tlogin p#p1{background:url(img/loginBg.gif) no-repeat;}
+.Tlogin p#p1.pOn{background:url(img/loginBg.gif) no-repeat 0 -32px;}
+.Tlogin p#p2{background:url(img/loginBg.gif) no-repeat 0 -64px;}
+.Tlogin p#p2.pOn{background:url(img/loginBg.gif) no-repeat 0 -96px;}
+.Tlogin p#p1 span,.Tlogin p#p2 span,.Tlogin p#validate span{width:142px;height:32px;line-height:32px;color:#d2d2d2;padding:0 5px;position:absolute;left:36px;top:0px; z-index:1;}
+.Tlogin p#validate span{ width:83px;}
+.Tlogin p#p1 input,.Tlogin p#p2 input,.Tlogin p#validate input{position:absolute;left:36px;top:0;background-color:transparent; z-index:2;}
+.Tlogin p#p1 a.del{width:16px;height:16px;display:block;background:url(img/aDel.gif) no-repeat; text-indent:-999em;overflow:hidden; position:absolute;right:8px;top:8px; z-index:3;}
+.Tlogin p#p1 a.del:hover{background:url(img/aDel.gif) no-repeat 0 -16px;}
+.Tlogin p#p1 a.aRg,.Tlogin p#p2 a.aFd{width:50px;height:18px;line-height:18px;color:#00b2ed; position:absolute;right:-55px; top:8px;}
+.Tlogin p#p1 a.aRg:hover,.Tlogin p#p2 a.aFd:hover{color:#f60;}
+
+.Tlogin p#validate{margin-bottom:13px;background:url(img/loginBg.gif) no-repeat 0 -128px;}
+.Tlogin p#validate.pOn{background:url(img/loginBg.gif) no-repeat 0 -160px;}
+.Tlogin p#validate input{ width:145px;}
+.Tlogin p#validate img{ width:64px; height:32px; position:absolute; top:0px; right:0;}
+
+.Tlogin p#pCheck{width:60px;height:100px;line-height:20px;_line-height:22px;margin-bottom:8px;overflow:hidden; position:absolute;right:-58px;top:55px;}
+.Tlogin p#pCheck a{width:50px;height:20px;line-height:20px;margin-left:8px;color:#00b2ed;float:right;}
+.Tlogin p#pCheck a.aRg{margin-bottom:22px;}
+.Tlogin p#pCheck a:hover,.Tlogin p.pReg a:hover{color:#F60;}
+
+
+.Tlogin p.btn{width:261px;height:39px;}
+.Tlogin button{width:261px;height:39px;line-height:37px; text-align:center; font-family:"Microsoft YaHei"; font-size:18px;display:block;color:#fff;background:url(img/loginBg.gif) no-repeat 0 -201px;border:none;cursor:pointer;}
+.Tlogin button.bOn{background:url(img/loginBg.gif) no-repeat 0 -240px;}
+-*/
+
+/*---账号安全验证弹窗(2016.10.13)---*/
+.tan h3 span{ width:auto;}
+.tanM{ background-color:#fff;}
+.payment{ width:340px; margin:0 auto; background:url(img/payment.jpg) no-repeat center 12px; padding:94px 0 0;}
+.payment p{ height:30px; line-height:30px; padding:6px 0;}
+.payment .tit{ font-size:14px; text-align:center; color:#434343;}
+.payment p.pWarn{ color:#fe5400; height:18px; line-height:18px; text-align:left; padding:0 0 0 72px;}
+.payment p label{ float:left; color:#434343; line-height:30px; font-size:14px; font-weight:bold; padding:0 0 0 2px;}
+.payment p input{width:234px;height:28px;line-height:28px;padding:0 5px;border:1px solid #d1d1d1;background-color:#fff;float:left;}
+.tBtn .forgetPwd{ color:#6a6a6a; font-size:12px; padding:0 0 0 10px; line-height:50px; text-align:left; background:none; font-weight:normal;}
+.tBtn .forgetPwd:hover{ color:#0999e7; background:none;}
+.tBtn a.bn3{width:150px; height:34px; line-height:34px;font-weight:bold;font-size:14px;color:#fff;background:url(img/tBtn.jpg) no-repeat 0 -493px; float:none; margin:0 auto; display:block;}
+.tBtn a.bn3:hover{color:#fff;background:url(img/tBtn.jpg) no-repeat 0 -528px;}
+.tBtn a.b3{margin-left:150px;}
+.pBtm{ padding:16px 0 34px;}
+.pTip{ padding:0 40px 20px; margin:0 auto;}
+.pTip p{line-height:25px; text-align:center;color:#575252;}
+.payment p,.tBtn .forgetPwd,.pTip{font-family:"Microsoft YaHei","\5b8b\4f53", Arial, Helvetica, sans-serif,"Hiragino Sans GB";}
+
+/*---登录/实名认证信息完善(2017.04.28)---*/
+.tan p input.i{color:#d2d2d2;padding:0 5px;background:none;border:none;float:left; outline:none;}
+.tan p input.ii{color:#666}
+.tBtn a.a1,.tBtn a.a2{ width:130px; height:39px; line-height:39px; display:block; text-align:center; background-image:url(img/tBtn.jpg); background-repeat:no-repeat; float:left; _display:inline;}
+.tBtn a.a1{ background-position:0 -580px; color:#1999e3; margin-left:58px;}
+.tBtn a.a2{ background-position:0 -621px; color:#ffffff; margin-left:18px;}
+.tBtn a.a1:hover,.tBtn a.a2:hover{ background-position:0 -662px; color:#fff;}
+.real{ width:390px; position:relative; padding:20px 0 10px;}
+.real p{}
+.real p.pTip{ padding:20px 0; font-size:15px;}
+.real p span{ color:#ff4e00;}
+.real p.tBtn{ height:39px; padding:15px 0 16px;}
+
+/*---//登录//---*/
+.logDiv{}
+.logDiv .logWrap{ width:326px; position:relative; padding:10px 0 10px 64px; margin:0 auto;}
+.logDiv p{width:261px;height:32px;line-height:32px;position:relative}
+.logDiv p.pWarn{height:21px;line-height:20px;margin-bottom:5px;color:#fe3c00; font-size:13px;}
+.logDiv p#p1,.logDiv p#p2{margin-bottom:20px;}
+.logDiv p label{width:36px; text-indent:-999em;float:left;}
+.logDiv p input.i{width:175px;height:32px;line-height:32px;color:#d2d2d2;padding:0 5px;background:none;border:none;float:left; outline:none;}
+.logDiv p input.ii{color:#666}
+.logDiv p#p1.pOn input,.logDiv p#p2.pOn input,.logDiv p#validate.pOn input{color:#666}
+.logDiv p#p1{background:url(img/loginBg2.gif) no-repeat;}
+.logDiv p#p1.pOn{background:url(img/loginBg2.gif) no-repeat 0 -32px;}
+.logDiv p#p1.pErr{background:url(img/loginBg2.gif) no-repeat 0 -192px;}
+.logDiv p#p2{background:url(img/loginBg2.gif) no-repeat 0 -64px;}
+.logDiv p#p2.pOn{background:url(img/loginBg2.gif) no-repeat 0 -96px;}
+.logDiv p#p2.pErr{background:url(img/loginBg2.gif) no-repeat 0 -224px;}
+.logDiv p#p1 span,.logDiv p#p2 span,.logDiv p#validate span{width:142px;height:32px;line-height:32px;color:#d2d2d2;padding:0 5px;position:absolute;left:36px;top:0px; z-index:1;}
+.logDiv p#validate span{ width:116px;}
+.logDiv p#p1 input,.logDiv p#p2 input,.logDiv p#validate input{position:absolute;left:36px;top:0;background-color:transparent; z-index:2;}
+.logDiv p#p1 a.del{width:16px;height:16px;display:block;background:url(img/aDel.gif) no-repeat; text-indent:-999em;overflow:hidden; position:absolute;right:8px;top:8px; z-index:3;}
+.logDiv p#p1 a.del:hover{background:url(img/aDel.gif) no-repeat 0 -16px;}
+.logDiv p#p1 a.aRg,.logDiv p#p2 a.aFd{width:50px;height:18px;line-height:18px;color:#00b2ed; position:absolute;right:-55px; top:8px;}
+.logDiv p#p1 a.aRg:hover,.logDiv p#p2 a.aFd:hover{color:#f60;}
+.logDiv p#validate{margin-bottom:8px;background:url(img/loginBg2.gif) no-repeat 0 -128px;}
+.logDiv p#validate.pOn{background:url(img/loginBg2.gif) no-repeat 0 -160px;}
+.logDiv p#validate.pErr{background:url(img/loginBg2.gif) no-repeat 0 -256px;}
+.logDiv p#validate input{ width:116px;}
+.logDiv p#validate img{ width:87px; height:30px;border:1px solid #c6c6c6; position:absolute; top:0px; left:173px;}
+.logDiv p#validate a{width:36px;height:16px;line-height:16px;display:block;color:#fe7348; position:absolute;bottom:0;right:0;}
+.logDiv p#validate a:hover{color:#00b2ed;}
+.logDiv p#pCheck{height:20px;line-height:20px;_line-height:22px;margin-bottom:8px;overflow:hidden;}
+.logDiv p#pCheck input{height:15px;width:15px;margin-top:2px;float:left;display:none;}
+.logDiv p#pCheck label{width:50px;height:20px; text-indent:0;padding-left:16px;cursor:pointer;color:#7E7E7E;background:url(img/checkBox2.gif) no-repeat;float:left;}
+.logDiv p#pCheck label.checked{background:url(img/checkBox2.gif) no-repeat 0 -20px;}
+.logDiv p#pCheck a{width:50px;height:20px;line-height:20px;margin-left:8px;color:#7E7E7E;float:right;}
+.logDiv p#pCheck a:hover,.uc p.pReg a:hover{color:#F60;}
+.logDiv p.btn{width:261px;height:39px;margin-bottom: 8px;}
+.logDiv button{width:261px;height:39px;line-height:37px; text-align:center; font-family:"Microsoft YaHei"; font-size:16px;display:block;color:#fff;background:url(img/btn.gif) no-repeat 0 0;border:none;cursor:pointer;}
+.logDiv button.bOn{background:url(img/btn.gif) no-repeat 0 -40px;}
+/*---//其他登录(2016/09/22)//---*/
+.otherLogin{ width:261px;height:30px;line-height:30px;padding-top:2px;margin-bottom:0;color:#7e7e7e;text-align:center;}
+.otherLogin .third{}
+.otherLogin .icon3{width:30px;height:30px;display:block;float:left;margin:0;background-image:url(img/iconLogin.gif);background-repeat:no-repeat; overflow:hidden;}
+.otherLogin .qq{ background-position:-30px 0;}
+.otherLogin .qq:hover{ background-position:-30px -30px;}
+.otherLogin .weibo{ background-position:-60px 0;}
+.otherLogin .weibo:hover{ background-position:-60px -30px;}
+.otherLogin .alipay{ background-position:-90px 0;}
+.otherLogin .alipay:hover{ background-position:-90px -30px;}
+.otherLogin .weixin{ background-position:0 0;}
+.otherLogin .weixin:hover{ background-position:0 -30px;}
+.otherLogin span{ height:30px;line-height:30px;float:left; font-size:12px; color:#7e7e7e; padding-left:24px;}
+/*---//实名认证弹窗//---*/
+.tan2,.realDiv{ width:300px; background-color:#fff; z-index:999; border:none;}
+.tan2{ height:260px;}
+.realDiv{ height:326px;}
+.tan2 h3,.realDiv h3{ height:24px; background-color:#fff; position:relative;}
+.tan2 h3 span,.tan2 h3 a,.realDiv h3 span,.realDiv h3 a{ text-indent:-999em; display:block;}
+.tan2 h3 span,.realDiv h3 span{ float:left;}
+.tan2 h3 a,.realDiv h3 a{ background:url(img/close.gif) no-repeat; width:12px; height:12px; overflow:hidden; position:absolute; top:9px; right:7px;}
+.tan2 .tanM,.realDiv .tanM{ width:auto; padding:0;}
+.avatar{ width:82px; height:82px; display:block; margin:0 auto;}
+.tan2 .pTip{ width:224px; line-height:24px; color:#6a6a6a; text-align:center; font-size:14px; padding:18px 0;}
+.tan2 p.btn{ width:228px; height:39px; margin:0 auto; padding-bottom:27px;}
+.tan2 p.btn a{ width:228px; height:39px; line-height:39px; text-align:center; font-family:"Microsoft YaHei"; font-size:16px; background:url(img/btn.gif) no-repeat 0 -80px; color:#fff; cursor:pointer; display:block;}
+.tan2 p.btn a:hover{ background-position:0 -120px;}
+
+.realDiv{}
+.realDiv h3{ background-color:#26b5ff;}
+.realDiv h3 a{ background-position:0 -12px;}
+.realDiv .tanM{ background:url(img/realDiv.gif) no-repeat center top;}
+.realDiv .pTip{ width:300px; height:91px; color:#fff; text-align:center; padding:0; position:relative;}
+.realDiv .pTip h4{ width:200px; height:28px; line-height:28px; font-size:14px; position:absolute; top:-14px; left:50px;}
+.realDiv .pTip p{ color:#fff; padding-top:12px;}
+
+.realWrap{ width:300px; padding:10px 0 10px; position:relative; margin:0 auto;}
+.realWrap p{ width:300px; float:left;}
+.realWrap p.pWarn{ width:300px;height:14px;line-height:14px;color:#fe3c00; text-align:center; padding-bottom:6px;}
+.realWrap p label{ width:94px; height:24px; line-height:24px; font-size:14px; color:#6a6a6a; text-align:right; float:left;}
+.realWrap p#p01,.realWrap p#p02{ height:24px; line-height:24px; overflow:hidden; position:relative;}
+.realWrap p#p01.pOn input,.realWrap p#p02.pOn input{color:#666}
+.realWrap p#p01 span,.realWrap p#p02 span,.realWrap p#p01 input,.realWrap p#p02 input{ font-size:14px;}
+.realWrap p#p01 span,.realWrap p#p02 span{width:140px;height:24px;line-height:24px;color:#bebebe;padding:0 5px;position:absolute;left:94px;top:0px; z-index:1;}
+.realWrap p#p01 input,.realWrap p#p02 input{position:absolute;left:94px;top:0; background:url(img/blank.gif) no-repeat; z-index:2;width:160px;height:21px;line-height:21px; border-bottom:1px solid #c3c3c3;border-top:1px solid #fff;}
+.realWrap p#p01 var,.realWrap p#p02 var{ width:24px; height:24px; display:block; position:absolute; top:0; left:264px;}
+.realWrap p#p01 var.suc,.realWrap p#p02 var.suc{ background:url(img/ico2.gif) no-repeat 0 0;}
+.realWrap p#p01 var.warn,.realWrap p#p02 var.warn{ background:url(img/ico2.gif) no-repeat 0 -24px;}
+.realWrap .pSpan{ width:200px; height:14px; line-height:14px; color:#dfdfdf; font-style:italic; padding:0 0 6px 99px;}
+.realWrap p.btn{width:300px;height:39px; margin:8px auto 0;}
+.realWrap p button{width:228px;height:39px;line-height:39px; text-align:center; font-family:"Microsoft YaHei"; font-size:16px;display:block;color:#fff;background:url(img/btn.gif) no-repeat 0 -80px;border:none;cursor:pointer; margin:0 auto;}
+.realWrap p button.bOn{background:url(img/btn.gif) no-repeat 0 -120px;}
+.realWrap p.pTip2{ line-height:22px; margin-top:20px; padding:4px 0; color:#6a6a6a; text-align:center; margin-top:6px;}
+
+/*---2017.07.17 实名认证弹窗添加服务协议*/
+.realDiv{height:352px;}
+.realWrap p.checkbox{ width:260px; padding-left:38px; height:26px; line-height:26px; font-size:12px;}
+.realWrap p.checkbox input{ float:left;}
+.realWrap p.checkbox label{ width:auto; float:left;}
+.realWrap p.checkbox label.wykg{ font-size:12px; height:26px; line-height:26px;}
+.realWrap p.checkbox label.checkbox{ width:16px; height:26px; line-height:26px; text-indent:-999em; cursor:pointer; background:url(img/checkBox2.gif) left 3px no-repeat; padding-right:0;}
+.realWrap p.checkbox label.checked{ background:url(img/checkBox2.gif) left -17px no-repeat; padding-right:0;}
+.realWrap p.checkbox span{color:#1aa0ec; height:26px; line-height:26px;}
+.realWrap p.checkbox a{ margin-right:0px; text-decoration:underline;}
+.realWrap p.checkbox a:hover{ color:#f60;}
+.realWrap p.checkbox span,.realWrap p.checkbox a{ color:#6a6a6a; float:left;}
+.realWrap p button.dis,.realWrap p button.dis:hover{ cursor:default;background:url(img/btn.gif) no-repeat 0 -240px;}
+

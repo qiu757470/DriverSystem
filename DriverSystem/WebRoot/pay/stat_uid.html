@@ -1,0 +1,29 @@
+
+<!-- saved from url=(0169)http://log.mygame2.cn/stat_uid.htm?r=0.5639873230829835&type=4&refer=http%3A%2F%2Fpay.game2.cn%2Fpay%2F&fv=20.0.0&refer2=http%3A%2F%2Fpay.game2.cn%2Fpayoffline%2F&tcid=& -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=GBK"><script type="text/javascript">
+document.domain  = 'mygame2.cn';
+var statIdUrl    = 'http://log.mygame2.cn/log_uid.htm';
+var statIdOutUrl = 'http://log.mygame2.cn/log_uidout.htm';
+var getParam=(function(){var returnArr={};var curUrl=window.location.search+"";if(curUrl.substr(0,1)=="?"){curUrl=curUrl.substr(1)}var paramArr=curUrl.split("&");var i,temp;for(i in paramArr){temp=paramArr[i].split("=");if(temp[0]){if(typeof(temp[1])!="undefined"){returnArr[temp[0]]=temp[1]}else{returnArr[temp[0]]=""}}}return returnArr})();
+if (getParam['type'] && getParam['refer']) {
+    var nowTime = parseInt((new Date).getTime()/1000);
+    function statLog(url,callback){if(callback){var _=new Image();_.src=url}else{document.write('<img src="'+url+'" width="0" height="0" border="0" />')}};
+    function setCookie(name,value,time, domain){var nameString=name+'='+escape(value);var expiryString="";if(time!==0){var expdate=new Date();if(time==null||isNaN(time))time=60*60*1000;expdate.setTime(expdate.getTime()+time);expiryString=' ;expires = '+expdate.toGMTString()}var path=" ;path =/";var domainStr = domain ? "; domain="+domain : '';document.cookie=nameString+expiryString+path+domainStr};
+    function getCookie(sName){var aCookie=document.cookie.split('; ');for(var i=0;i<aCookie.length;i++){var aCrumb=aCookie[i].split('=');if(sName==aCrumb[0]){return unescape(aCrumb[1])}}return''};
+    function genMasStatId(){var g=(new Date()).getTime().toString(16);var i=5;while(i--){g+=Math.floor(Math.random()*16.0).toString(16)}return g};
+    var tcid=(function(tcidVal){var _label='tcid';var _tcid=getCookie(_label);if(!_tcid){_tcid=tcidVal||genMasStatId();setCookie(_label,_tcid,10*365*86400*1000,'.'+document.domain)}return _tcid})(getParam['tcid']||'');
+    var search=(window.location.search||'').replace(/([?&])tcid=[^&]+/, '').replace(/^[&]/, '?').replace(/&+$/, '')+'&tcid='+tcid;
+    var url=window.statIdUrl + search;
+    statLog(url, function(){});
+
+    //window.onerror=function(){return true};
+    window.onbeforeunload=function(){
+        var diffTime = parseInt((new Date).getTime()/1000) - window.nowTime;
+        statLog(window.statIdOutUrl+'?dt='+diffTime+search.replace(/^\?/, '&'), function(){});
+        var xhr = (function(){if(typeof XMLHttpRequest!="undefined"){return new XMLHttpRequest()}else if(typeof ActiveXObject!="undefined"){var version=["MSXML2.XMLHttp.6.0","MSXML2.XMLHttp.3.0","MSXML2.XMLHttp",];for(var i=0;i<version.length;i++){try{return new ActiveXObject(version[i])}catch(e){}}}return null})();
+        xhr.open('get', window.location.protocol+'//'+window.location.host+window.location.pathname, false);
+        xhr.send(null);
+    };
+};
+</script>
+</head><body marginwidth="0" marginheight="0"></body></html>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="org.great.mapper.TeacherMapper">
+	<select id="selectFromTeacher" resultType="org.great.bean.Teacher">
+		select * from teacher t left join course c on t.course_id=c.course_id
+		where t.course_id=#{course_id}
+	</select>
+	<select id="selectTeacherName" resultType="org.great.bean.Teacher">
+		select * from teacher
+		where teacher_id=#{teacher_id}
+	</select>
+  <!-- 通过驾校id查询教练-->
+	  <select id="findBySchoolId" parameterType="java.lang.String" resultType="org.great.bean.Teacher">
+	  	select * from teacher where school_id = #{school_id}
+	  </select>
+	  
+	  <!-- 通过教练id查询教练-->
+	  <select id="findById" parameterType="java.lang.String" resultType="org.great.bean.Teacher">
+	  	select * from teacher where teacher_id = #{teacher_id}
+	  </select>
+	  
+	  <delete id="deleteOneById" parameterType="java.lang.String">
+	  	delete from teacher where teacher_id = #{_parameter}
+	  </delete>
+</mapper>

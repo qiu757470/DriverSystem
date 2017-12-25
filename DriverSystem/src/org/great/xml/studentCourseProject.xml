@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.great.mapper.StuCourseProjectMapper">
+	<!-- 查询各科目的学时情况 -->
+	<select id="findAllByCourseProject" resultMap="StuCourseProject">
+	select * from (   
+       select page.*,rownum rn from (select * from
+		STU_COURSE_PROJECT scp
+		left join
+		COURSE_PROJECT c on
+		c.PROJECT_ID=scp.PROJECT_ID where course_id=#{courseSelect}) page    
+     
+       where #{pageMax} >= rownum    
+)     
+where rn > #{pageMin} 
+		
+	</select>
+	<select id="examFindAllByCourseProject" resultMap="StuCourseProject">
+	select * from
+		STU_COURSE_PROJECT scp
+		left join
+		COURSE_PROJECT c on
+		c.PROJECT_ID=scp.PROJECT_ID where course_id=#{courseSelect}
+	</select>
+	<resultMap type="org.great.bean.StuCourseProject" id="StuCourseProject">
+		<result property="stu_course_project_time" column="stu_course_project_time" />
+		<result property="stu_course_project_state" column="stu_course_project_state" />
+		<result property="stu_course_project_score" column="stu_course_project_score" />
+		<association property="courseProject" resultMap="CourseProject"></association>
+	</resultMap>
+	<resultMap type="org.great.bean.CourseProject" id="CourseProject">
+		<result property="project_name" column="project_name" />
+		<result property="project_time" column="project_time" />
+	</resultMap>
+
+
+
+
+
+</mapper>

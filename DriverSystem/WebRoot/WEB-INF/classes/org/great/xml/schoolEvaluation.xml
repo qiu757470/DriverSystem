@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="org.great.mapper.SchoolEvaluationMapper">
+	
+	<insert id="updateStudentToSchoolEvaluatton" parameterType="org.great.bean.SchoolEvaluation">
+		insert into
+		school_evaluation(school_eval_id,s_service_grade,s_standard_grade,s_place_grade,s_security_grade,s_eval_comment,student_id)
+		values(SEQ_SCHOOL_EVALUTION.nextval,#{s_service_grade},#{s_service_grade},#{s_place_grade},#{s_security_grade},#{s_eval_comment},#{student_id})
+
+	</insert>
+	
+<delete id="deleteByStudentId" parameterType="java.lang.String">
+		delete from school_evaluation where student_id = #{student_id}
+	</delete>
+
+	 <select id="findByStudentId" resultType="org.great.bean.SchoolEvaluation">
+	  	select * from school_evaluation where student_id = #{student_id}
+	 </select>
+</mapper>

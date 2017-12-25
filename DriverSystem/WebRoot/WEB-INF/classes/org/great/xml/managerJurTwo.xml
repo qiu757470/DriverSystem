@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管用户表xml文件 -->
+<mapper  namespace="org.great.mapper.ManagerJurTwoMapper">
+
+  		<!-- 通过id查询一级权限 -->
+	 <select id="findJurOne" resultMap="managerJurOne" parameterType="java.lang.String">
+      	select * from school where manager_jur_one_id = #{manager_jur_one_id}
+      </select>
+      <resultMap type="org.great.bean.ManagerJurOne" id="managerJurOne">
+      	<result property="manager_jur_one_id" column="manager_jur_one_id"/>
+      	<result property="manager_jur_one_name" column="manager_jur_one_name"/>
+      </resultMap>
+      
+	<resultMap type="org.great.bean.ManagerJurTwo" id="managerJurTwo">
+		<id property="manager_jur_two_id" column="school_manager_id" />
+		<result property="manager_jur_two_name" column="manager_jur_two_name" />
+		<result property="manager_jur_one_id" column="manager_jur_one_id" />
+		<association property="managerJurOne" column="manager_jur_one_id" javaType="org.great.bean.ManagerJurOne"  select="findJurOne" />  
+	</resultMap>
+ 	<select id="findByJurTwoId" resultType="org.great.bean.ManagerJurTwo">
+ 		select * from manager_jur_two where manager_jur_two_id = #{manager_jur_two_id}
+ 	</select>
+ 	
+ 	<select id="findByJurTwoName" resultType="org.great.bean.ManagerJurTwo">
+ 		select * from manager_jur_two where manager_jur_two_name = #{manager_jur_two_name}
+ 	</select>
+      
+</mapper>

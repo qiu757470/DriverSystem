@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管人员自身的后台的数据库调用的xml -->
+<mapper namespace="org.great.mapper.SchoolManagerMapper">
+	<!-- 根据账号，密码查找到一个用户 -->
+	<select id="findUser" resultType="org.great.bean.SchoolManager">
+		select * from school_manager where
+		school_manager_account=#{school_manager_account}
+		and school_manager_password=#{school_manager_password}
+	</select>
+	<!-- 查找用户对应驾校的审核状态 -->
+	<!-- <select id="findSchoolByAccount" resultMap="findschool" parameterType="java.lang.String"> -->
+	<!-- select * from school_manager s left join school sch on s.school_id=sch.school_id 
+		where school_manager_account=#{school_manager_account} -->
+	<!-- </select> -->
+	<!-- <resultMap type="org.great.bean.SchoolManager" id="findschool"> -->
+	<!-- <result property="school_manager_account" column="school_manager_account"/> -->
+
+	<!-- <association property="school" column="school_id" javaType="org.great.bean.School"> -->
+	<!-- <result property="school_name" column="school_name"/> -->
+	<!-- <result property="school_state" column="school_state"/> -->
+
+	<!-- </association> -->
+	<!-- </resultMap> -->
+
+	<!-- 查找用户的权限 -->
+	<select id="findMenuByAccount" resultMap="selectMenu"
+		parameterType="java.lang.String">
+		select * from manager_jur_one mjo left join manager_jur_two mjt on
+		mjt.manager_jur_one_id=mjo.manager_jur_one_id
+		right join manager_jur mj on mj.manager_jur_two_id=mjt.manager_jur_two_id
+		left join school_manager sch on sch.school_manager_id
+		=mj.school_manager_id
+		where school_manager_account=#{school_manager_account}
+	</select>
+	<resultMap type="org.great.bean.ManagerJurOne" id="selectMenu">
+		<id property="manager_jur_one_id" column="manager_jur_one_id" />
+		<result property="manager_jur_one_name" column="manager_jur_one_name" />
+		<association property="managerjurtwo" resultMap="menu"></association>
+	</resultMap>
+	<resultMap type="org.great.bean.ManagerJurTwo" id="menu">
+		<id property="manager_jur_two_id" column="manager_jur_two_id" />
+		<result property="manager_jur_two_name" column="manager_jur_two_name" />
+	</resultMap>
+
+	<!-- 查找学校信息 -->
+	<select id="findSchoolInfoByAccount" parameterType="java.lang.String"
+		resultMap="schoolInfo">
+		select * from school sch left join school_manager schm on
+		schm.school_id=sch.school_id where
+		school_manager_id=#{school_manager_id}
+	</select>
+	<resultMap type="org.great.bean.School" id="schoolInfo">
+		<id property="school_id" column="school_id" />
+		<result property="school_name" column="school_name" />
+		<result property="school_representative_name" column="school_representative_name" />
+		<result property="school_representative_id" column="school_representative_id" />
+		<result property="school_representative_phone" column="school_representative_phone" />
+		<result property="school_province" column="school_province" />
+		<result property="school_city" column="school_city" />
+		<result property="school_certificate" column="school_certificate" />
+		<result property="school_code" column="school_code" />
+		<result property="school_state" column="school_state" />
+		<result property="school_picture_url" column="school_picture_url" />
+		<result property="school_phone" column="school_phone" />
+		<result property="school_homepage" column="school_homepage" />
+		<result property="school_file_url" column="school_file_url" />
+		<result property="school_address" column="school_address" />
+		<result property="school_refuse_reason" column="school_refuse_reason" />
+		<result property="school_charge" column="school_charge"/>
+		<association property="schoolManager" resultMap="manager"></association>
+	</resultMap>
+<!-- 	<resultMap type="org.great.bean.SchoolManager" id="manager">
+		<id property="school_manager_id" column="school_manager_id" />
+		<result property="school_manager_account" column="school_manager_account" />
+	</resultMap> -->
+	
+	
+	<resultMap type="org.great.bean.SchoolManager" id="manager">
+		<id property="school_manager_id" column="school_manager_id" />
+		<result property="school_manager_account" column="school_manager_account" />
+		<result property="school_manager_password" column="school_manager_password" />
+		<result property="school_manager_name" column="school_manager_name" />
+		<result property="school_manager_identification" column="school_manager_identification" />
+		<result property="school_manager_sex" column="school_manager_sex" />
+		<result property="school_manager_province" column="school_manager_province" />
+		<result property="school_manager_city" column="school_manager_city" />
+		<result property="school_manager_address" column="school_manager_address" />
+		<result property="school_manager_phone" column="school_manager_phone" />
+		<result property="school_manager_state" column="school_manager_state" />
+		<result property="school_id" column="school_id" />
+		<association property="school" column="school_id" javaType="org.great.bean.School"  select="findSchool"/>  
+	</resultMap>
+	
+	<!-- 插入学校信息 -->
+	<insert id="insertSchoolBean" parameterType="org.great.bean.School">
+		<selectKey keyProperty="school_id" order="BEFORE"
+			resultType="java.lang.String">
+			select SEQ_SCHOOL.nextval from dual
+		</selectKey>
+		insert into
+		school(school_id,school_name,school_representative_name,school_representative_id,school_representative_phone,school_province,school_city,school_address,
+		school_phone,school_certificate,school_code,school_state,school_picture_url,school_homepage,school_refuse_reason,school_file_url)
+		values(#{school_id},#{school_name},#{school_representative_name},#{school_representative_id},#{school_representative_phone}
+		,#{school_province},#{school_city},#{school_address},#{school_phone},#{school_certificate},#{school_code},#{school_state}
+		,#{school_picture_url},#{school_homepage},#{school_refuse_reason},#{school_file_url})
+	</insert>
+
+	<!-- 跟新学校信息 -->
+	<update id="updateSchool" parameterType="java.util.HashMap">
+		update school set
+		school_name=#{school_name},school_representative_name=#{school_representative_name},school_representative_id=#{school_representative_id},school_representative_phone=#{school_representative_phone},school_province=#{school_province},
+		school_city=#{school_city},school_certificate=#{school_certificate},
+		school_code=#{school_code},school_state=#{school_state},
+		school_picture_url=#{school_picture_url},school_phone=#{school_phone},school_homepage=#{school_homepage},
+		school_file_url=#{school_file_url},school_address=#{school_address},school_refuse_reason=#{school_refuse_reason}
+		,school_charge=#{school_charge}
+		where school_id=#{school_id}
+	</update>
+
+	<!-- 开始安排信息查找 -->
+	<select id="findExamPlan" parameterType="java.lang.String"
+		resultMap="examinfo">
+		SELECT * FROM   
+(SELECT A.*, ROWNUM RN FROM (select * from exam_plan ep left join school sc
+		on ep.school_id=sc.school_id left join teacher t on
+		ep.teacher_id=t.teacher_id left join course cs on
+		cs.course_id=ep.course_id where ep.school_id=#{school_id} and ep.exam_plan_state=#{exam_plan_state} order by ep.exam_plan_date DESC)
+ A   
+WHERE ROWNUM &lt;=#{maxnum}
+)  WHERE RN  &gt;=#{minnum}  
+		
+	</select>
+
+	<resultMap type="org.great.bean.ExamPlan" id="examinfo">
+		<id property="exam_plan_id" column="exam_plan_id" />
+		<result property="exam_plan_date" column="exam_plan_date" />
+		<result property="exam_plan_time" column="exam_plan_time" />
+		<result property="exam_plan_address" column="exam_plan_address" />
+        <result property="exam_plan_state" column="exam_plan_state" />
+        <result property="exam_plan_input" column="exam_plan_input" />
+		<association property="course" column="course_id"
+			javaType="org.great.bean.Course">
+			<result property="course_name" column="course_name" />
+			<result property="course_time" column="course_time" />
+		</association>
+
+		<association property="teacher" column="teacher_id"
+			javaType="org.great.bean.Teacher">
+			<result property="teacher_name" column="teacher_name" />
+		</association>
+
+
+	</resultMap>
+  
+<!--      删除学生考试安排表里的考试安排记录 -->
+      <delete id="deletestu_examplan" parameterType="java.lang.String">
+      delete from stu_exam_plan where exam_plan_id=#{epid}
+      
+      </delete>
+
+	<!-- 考试安排删除 -->
+	<delete id="deleteExam" parameterType="java.lang.String">
+		delete from exam_plan where school_id=#{school_id}and exam_plan_id=#{epid}
+	</delete>
+
+
+
+	<!-- 开始安排查找 -->
+	<select id="updateExam" parameterType="java.lang.String"
+		resultMap="exinfo">
+		select * from exam_plan ep left join teacher t on ep.teacher_id=t.teacher_id
+		left join course c on
+		ep.course_id=c.course_id
+		where exam_plan_id=#{epid}
+	</select>
+	<resultMap type="org.great.bean.ExamPlan" id="exinfo">
+		<id property="exam_plan_id" column="exam_plan_id" />
+		<result property="exam_plan_date" column="exam_plan_date" />
+		<result property="exam_plan_time" column="exam_plan_time" />
+		<result property="exam_plan_address" column="exam_plan_address" />
+
+		<association property="course" column="course_id"
+			javaType="org.great.bean.Course">
+			<result property="course_name" column="course_name" />
+			<result property="course_time" column="course_time" />
+		</association>
+
+		<association property="teacher" column="teacher_id"
+			javaType="org.great.bean.Teacher">
+			<result property="teacher_name" column="teacher_name" />
+		</association>
+
+	</resultMap>
+
+	<!-- 修改界面查找教练 -->
+	<select id="selectTeacher" parameterType="java.lang.String"
+		resultType="org.great.bean.Teacher">
+	select * from teacher where nvl(TEACHER_NAME,'xx') &lt;&gt;#{teacher_name} and school_id=#{school_id}
+	</select>
+	<!-- 修改界面查找科目 -->
+	<select id="selectCourse" parameterType="java.lang.String"
+		resultType="org.great.bean.Course">
+		select * from course where nvl(course_name,'xx') &lt;&gt;#{course_name}
+	</select>
+	<!-- 通过科目名找ID -->
+	<select id="selectcourseIdByname" parameterType="java.lang.String"
+		resultType="org.great.bean.Course">
+		select * from course where course_name=#{course_name}
+	</select>
+	<!-- 通过教练名找ID -->
+	<select id="selectteacherIdByname" parameterType="java.lang.String"
+		resultType="org.great.bean.Teacher">
+		select * from teacher where teacher_name=#{teacher_name}
+	</select>
+	<!-- 更新考试安排信息 -->
+    <update id="updateExamPlan" parameterType="org.great.bean.ExamPlan">
+    update exam_plan set course_id=#{course_id},teacher_id=#{teacher_id},school_id=#{school_id},exam_plan_date=#{exam_plan_date},
+    exam_plan_time=#{exam_plan_time},exam_plan_address=#{exam_plan_address} ,
+    exam_plan_state=#{exam_plan_state} ,exam_plan_input=#{exam_plan_input}  
+    where exam_plan_id=#{exam_plan_id}
+    
+    </update>
+    <!--    考试详情界面该科目下的参考学生 -->
+    <select id="studentExamInfo" parameterType="java.lang.String" resultMap="selectstu">
+  SELECT * FROM   
+(SELECT A.*, ROWNUM RN FROM (select * from exam_plan ep left join stu_exam_plan sep on ep.exam_plan_id=sep.exam_plan_id
+    left join student stu on sep.student_id=stu.student_id  left join student_course stuc on  stu.student_id=stuc.student_id left join
+    course cou on cou.course_id=stuc.course_id where ep.exam_plan_id=#{epid} )A   
+WHERE ROWNUM &lt;=#{maxnum}
+)  WHERE RN  &gt;=#{minnum}   
+    
+   
+   </select>
+   <resultMap type="org.great.bean.ExamPlan" id="selectstu">
+   <id property="exam_plan_id" column="exam_plan_id" />
+	<result property="exam_plan_date" column="exam_plan_date" />
+	<result property="exam_plan_time" column="exam_plan_time" />
+	<result property="exam_plan_address" column="exam_plan_address" />
+   <collection property="student" resultMap="stuinf"></collection>
+   </resultMap>
+   <resultMap type="org.great.bean.Student" id="stuinf">
+   <id property="student_id" column="student_id"/>
+   <result property="student_name" column="student_name"/>
+   <result property="student_sex" column="student_sex"/>
+   <result property="student_identification" column="student_identification"/>
+   <association property="course" resultMap="courseinfo"></association>
+   <association property="studentCouse" resultMap="studentCouseinfo"></association>
+   </resultMap>
+   <resultMap type="org.great.bean.Course" id="courseinfo">
+   <result property="course_name" column="course_name"/>
+   <result property="course_time" column="course_time"/>
+   </resultMap>
+   <resultMap type="org.great.bean.StudentCourse" id="studentCouseinfo">
+   <result property="student_course_score" column="student_course_score"/>
+   </resultMap>
+ 
+<!--   通过科目ID查找科目的学时 -->
+     <select id="selectcourseTimeById" parameterType="java.lang.String"
+		resultType="org.great.bean.Course">
+		select * from course where course_id=#{course_id}
+	 </select>
+
+<!-- 查找满足科目、学时的学生 -->
+   <select id="selectExamStudent" parameterType="java.lang.String" resultMap="examstus">
+select * from student stu left join  student_course stucou on stu.student_id=stucou .student_id left join course cose on
+stucou .course_id=cose.course_id left join
+stu_exam_plan step on stu.student_id=step.student_id left join exam_plan ep on step.exam_plan_id=ep.exam_plan_id 
+where stu.school_id=#{school_id} and stucou.student_course_time=#{student_course_time}and cose.course_name=#{course_name}and step.student_id is null 
+
+   </select>
+   <resultMap type="org.great.bean.Student" id="examstus">
+   <id property="student_id" column="student_id"/>
+   <result property="student_identification" column="student_identification"/>
+   <result property="student_name" column="student_name"/>
+   <result property="student_sex" column="student_sex"/>
+   <association property="course" resultMap="se_course"></association>
+   <association property="studentCouse" resultMap="exam_stu_course"></association>
+   </resultMap>
+   <resultMap type="org.great.bean.Course" id="se_course">
+   <result property="course_name" column="course_name"/>
+   </resultMap>
+   <resultMap type="org.great.bean.StudentCourse" id="exam_stu_course">
+   <result property="student_course_time" column="student_course_time"/>
+   </resultMap>
+<!--  查找所有教练 -->
+    <select id="selectexamTeacher" resultType="org.great.bean.Teacher" parameterType="java.lang.String">
+     select * from teacher where school_id=#{school_id}
+    </select>
+    
+<!-- 新建考试安排 -->
+<insert id="insertNewExamPlan" parameterType="org.great.bean.ExamPlan">
+   insert into exam_plan (exam_plan_id,course_id,teacher_id,school_id,exam_plan_date,exam_plan_time,exam_plan_province
+   ,exam_plan_city,exam_plan_address,exam_plan_state,exam_plan_input)values(seq_exam_plan.nextval,#{course_id},#{teacher_id},
+  #{school_id},#{exam_plan_date},#{exam_plan_time},#{exam_plan_province},
+   #{exam_plan_city},#{exam_plan_address},#{exam_plan_state},#{exam_plan_input})
+</insert>
+<!-- 查找当前考试安排ID -->
+<select id="selectExam_planId" resultType="java.lang.String">
+
+select seq_exam_plan.currval from dual
+   
+</select>
+
+<!-- 学生考试安排表插入 -->
+
+<insert id="insertNewStu_exam_plan" parameterType="org.great.bean.StuExamPlan">
+    insert into stu_exam_plan (student_id,exam_plan_id )values (#{student_id},#{exam_plan_id})
+
+</insert>
+
+<!-- 查找驾校管理员信息 -->
+<select id="selectSchoolManager" parameterType="java.lang.String" resultType="org.great.bean.SchoolManager">
+select * from school_manager where school_manager_id=#{school_manager_id}
+</select>
+
+<!-- 跟新驾校管理员信息 -->
+<update id="updateSchoolManager" parameterType="java.lang.String">
+update school_manager set school_manager_name=#{school_manager_name},school_manager_identification=#{school_manager_identification},
+school_manager_sex=#{school_manager_sex},school_manager_province=#{school_manager_province},
+school_manager_city=#{school_manager_city},school_manager_address=#{school_manager_address},school_manager_phone=#{school_manager_phone}
+where school_manager_id=#{school_manager_id}
+</update>
+
+<!-- 驾校管理员修改密码 -->
+<update id="updatePwd" parameterType="java.lang.String">
+update school_manager set school_manager_password=#{school_manager_password} where school_manager_id=#{school_manager_id}
+
+</update>
+
+<!-- 考生成绩录入 -->
+<update id="updateStuscore" parameterType="java.lang.String">
+
+update student_course set student_course_score=#{student_course_score} where student_id=#{student_id}
+
+</update>
+
+<!-- 考试安排录入状态改变 -->
+<update id="updateExamPlanInput" parameterType="java.lang.String">
+
+update exam_plan set exam_plan_input=#{exam_plan_input} where exam_plan_id=#{exam_plan_id}
+</update>
+
+<!-- 查找未审核的学生 -->
+<select id="selectStudents" parameterType="java.lang.String" resultType="org.great.bean.Student">
+ SELECT * FROM   
+(SELECT A.*, ROWNUM RN FROM (select * from student where school_id=#{school_id}and student_state=#{student_state})A   
+WHERE ROWNUM &lt;=#{maxnum}
+)  WHERE RN  &gt;=#{minnum}   
+
+</select>
+<!-- 学生审核状态改变 -->
+<update id="updateStudentState" parameterType="java.lang.String">
+
+update student set student_state=#{student_state} where student_id=#{student_id}
+
+
+</update>
+
+	  <!-- 通过id查询驾校 -->
+	 <select id="findSchool" resultType="org.great.bean.School" parameterType="java.lang.String">
+      	select * from school where school_id = #{school_id}
+      </select>
+      
+	<resultMap type="org.great.bean.SchoolManager" id="manager1">
+		<id property="school_manager_id" column="school_manager_id" />
+		<result property="school_manager_account" column="school_manager_account" />
+		<result property="school_manager_password" column="school_manager_password" />
+		<result property="school_manager_name" column="school_manager_name" />
+		<result property="school_manager_identification" column="school_manager_identification" />
+		<result property="school_manager_sex" column="school_manager_sex" />
+		<result property="school_manager_province" column="school_manager_province" />
+		<result property="school_manager_city" column="school_manager_city" />
+		<result property="school_manager_address" column="school_manager_address" />
+		<result property="school_manager_phone" column="school_manager_phone" />
+		<result property="school_manager_state" column="school_manager_state" />
+		<result property="school_id" column="school_id" />
+		<association property="school" column="school_id" javaType="org.great.bean.School"  select="findSchool"/>  
+	</resultMap>
+	
+	
+	
+	
+	
+	
+	
+	
+      <!-- 查找所有 -->
+      <select id="findAllManagers" resultMap="manager" parameterType="map">
+           select m.*,s.* from school_manager m left outer join school s on m.school_id = s.school_id
+           <if test="orderType != null and orderType != '' and orderType != 'defaultOrder'">
+     			order by m.${orderType} ${orderSeq}
+     	  </if>
+      </select>
+       <!-- 通过账号查找用户 -->
+      <select id="findByAccount" parameterType="java.lang.String" resultMap="manager1">
+      		select * from school_manager where school_manager_account = #{account}
+      </select>
+       <!-- 通过id查找用户 -->
+      <select id="findById" parameterType="java.lang.String" resultMap="manager1">
+      		select * from school_manager where school_manager_id = #{school_manager_id}
+      </select>
+     <!-- 获得所有用户的总数 -->
+     <select id="getTotalNum" resultType="java.lang.String">
+     	select max(rownum) from school_manager
+     </select>
+     <select id="findBySchoolId" resultMap="manager1" parameterType="java.lang.String">
+     	select * from school_manager where school_id = #{school_id}
+     </select>
+     <!-- 根据搜索内容搜索用户 -->
+     <select id="searchManager" parameterType="org.great.bean.ManagerSearch" resultMap="manager1">
+     	select m.*,s.* from school_manager m left outer join school s on m.school_id = s.school_id
+     	<trim prefix="WHERE" prefixOverrides="AND |OR"> 1 = 1
+     		<if test="school_manager_account != null and school_manager_account != ''">
+     			AND m.school_manager_account like  concat(concat('%',#{school_manager_account}),'%')
+     		</if>
+     		<if test="school_province != null and school_province != '' and school_province != '全部'">
+     			AND s.school_province = #{school_province}
+     		</if>
+     		<if test="school_city != null and school_city != '' and school_city != '全部'" >
+     			AND s.school_city = #{school_city}
+     		</if>
+     		<if test="school_name != null and school_name != '' and school_name != '全部'">
+     			AND s.school_name = #{school_name}
+     		</if>
+     		<if test="school_manager_state != null and school_manager_state != '' and school_manager_state != '全部'">
+     			AND m.school_manager_state = #{school_manager_state}
+     		</if>
+     	</trim>
+     	 <if test="orderType != null and orderType != '' and orderType != 'defaultOrder'">
+     			order by m.${orderType} ${orderSeq}
+     	 </if>
+     </select>
+     
+     <!-- 通过id删除一条 -->
+     <delete id="deleteOneById" parameterType="java.lang.String">
+     	delete from school_manager where school_manager_id = #{school_manager_id}
+     </delete>
+     
+     <!-- 通过实体bean插入一条 -->
+     <insert id="addOneByBean" parameterType="org.great.bean.SchoolManager">
+     	insert into school_manager values (seq_school_manager.nextval, #{school_manager_account}, #{school_manager_password}, #{school_manager_name},
+     	 #{school_manager_identification}, #{school_manager_sex}, #{school_manager_province}, #{school_manager_city}, #{school_manager_address}, #{school_manager_phone}, #{school_manager_state}, #{school_id})
+     </insert>
+     
+     <!-- 通过实体bean更新一条 -->
+     <update id="alterOneByBean" parameterType="org.great.bean.SchoolManager">
+     	update school_manager
+     	<trim prefix="set" suffixOverrides=","> 
+	     	<if test="school_manager_account != null">
+	     		school_manager_account = #{school_manager_account},
+	     	</if>
+	     	<if test="school_manager_password != null">
+	     		school_manager_password=#{school_manager_password},
+	     	</if>
+	     	<if test="school_manager_name != null">
+	     		school_manager_name = #{school_manager_name},
+	     	</if>
+	     	<if test="school_manager_identification != null">
+	     		school_manager_identification = #{school_manager_identification},
+	     	</if>
+	     	<if test="school_manager_sex != null">
+	     		school_manager_sex = #{school_manager_sex},
+	     	</if>
+     	  	<if test="school_manager_province != null">
+	     		school_manager_province = #{school_manager_province},
+	     	</if>
+	     	<if test="school_manager_city != null">
+	     		school_manager_city = #{school_manager_city},
+	     	</if>
+	     	<if test="school_manager_address != null">
+	     		school_manager_address = #{school_manager_address},
+	     	</if>
+	     	<if test="school_manager_phone != null">
+	     		school_manager_phone = #{school_manager_phone},
+	     	</if>
+	     	<if test="school_manager_state != null">
+	     		school_manager_state = #{school_manager_state},
+	     	</if>
+     		<if test="school_manager_state != null">
+	     		school_id = #{school_id}
+	     	</if>
+     		 where school_manager_id = #{school_manager_id} 
+     	</trim>
+     </update>
+</mapper>

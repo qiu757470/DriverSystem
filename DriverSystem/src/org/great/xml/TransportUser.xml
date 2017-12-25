@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管人员自身的后台的数据库调用的xml -->
+<mapper  namespace="org.great.mapper.TransUserMapper">
+     <!-- 根据账号，密码查找到一个用户 -->
+      <select id="findUser" resultType="org.great.bean.TransUser">
+           select * from  trans_user where trans_user_account=#{trans_user_account} 
+           and trans_user_password=#{trans_user_password}
+      </select>
+</mapper>

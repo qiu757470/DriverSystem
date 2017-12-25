@@ -1,0 +1,484 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<!-- <constant name="struts.devMode" value="true" /> -->
+	<!-- 运管内容 -->
+	<package name="loginPackage" namespace="/" extends="struts-default">
+
+		<!-- 登入界面 -->
+		<action name="login">
+			<result name="success">/WEB-INF/view/login.jsp</result>
+		</action>
+
+		<!-- 所有平台登录的action -->
+		<action name="loginAction" class="loginAction" method="login">
+		    <result name="studentSuccess" type="redirectAction">
+				<param name="namespace">/student</param>
+				<param name="actionName">toMain</param>
+				<param name="method">mainInit</param>
+			</result>
+		    <result name="transSuccess">/WEB-INF/view/transport/transportPage.jsp</result>
+			<result name="input">/WEB-INF/view/login.jsp</result>
+			<result name="schoolSuccess">/WEB-INF/view/school/index.jsp</result>
+			<result name="schoolFail">/WEB-INF/view/school/index2.jsp </result>
+			 <!--            session为空返回错误界面 -->
+           <result name="returnlogin">/WEB-INF/student/wrong.jsp</result>
+		</action>
+		<!-- menu显示界面 -->
+		<action name="menuAction" class="loginAction" method="menu">
+			<result name="menu">/WEB-INF/view/school/menu.jsp </result>
+		</action>
+
+		<action name="menuAction2" class="loginAction" method="menu2">
+			<result name="menu">/WEB-INF/view/school/menu2.jsp </result>
+		</action>
+
+		<action name="certificed" class="loginAction" method="certificted">
+			<result name="certificed">/WEB-INF/view/school/certification.jsp </result>
+		</action>
+
+		<!-- //审核通过界面 -->
+		<action name="certificedPass" class="loginAction" method="certifictedpass">
+			<result name="success">/WEB-INF/view/school/certifiedPass.jsp</result>
+		</action>
+
+   
+
+
+
+	</package>
+
+	<!--设置上传文件最大值 -->
+	<constant name="struts.multipart.maxSize" value="5242880" />
+	<constant name="struts.multipart.saveDir" value="/tempUpload" />
+
+<!-- ====================================驾校平台========================================================================= -->
+<!-- ====================================驾校平台========================================================================= -->
+<!-- ====================================驾校平台========================================================================= -->
+	
+	
+	<!-- 驾校平台action -->
+	<package name="driveSchool" namespace="/driveSchool" extends="json-default">
+		<action name="toMain">
+			<result>/WEB-INF/view/school/index.jsp</result>
+		</action>
+<!-- 		右边页面显示 -->
+		<action name="toMainPage">
+			<result>/WEB-INF/view/school/welcomeToStudent.jsp</result>
+		</action>
+		<!-- 登入界面 -->
+		<action name="schoolCertified" class="org.great.web.DriveSchoolUserAction1">
+			<result name="success">/WEB-INF/view/school/certification.jsp</result>
+			<result name="plan">/WEB-INF/view/school/examPlan.jsp</result>
+
+			<result name="deleteplan" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">examplan</param>
+			</result>
+
+			<result name="upexam">/WEB-INF/view/school/examPlanUpdate.jsp</result>
+
+			<result name="confirm" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">examplan</param>
+			</result>
+
+			<result name="info">/WEB-INF/view/school/ExamInfo.jsp</result>
+
+			<result name="newExam">/WEB-INF/view/school/newExam.jsp</result>
+
+			<result name="conNewExam" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">examplan</param>
+			</result>
+
+<!--            session为空返回错误界面 -->
+           <result name="returnlogin">/WEB-INF/student/wrong.jsp</result>
+
+
+			<!-- 新建考试界面通过科目选择学生 -->
+			<result name="selectstu" type="json">
+				<param name="root">result</param>
+			</result>
+
+			<!-- 驾校管理员修改个人信息界面 -->
+			<result name="SchoolManagerInfo">/WEB-INF/view/school/schoolManagerInfo.jsp
+			</result>
+			<result name="SchoolManagerInfoupdate">/WEB-INF/view/school/shoolMangerInfoUpdate.jsp
+			</result>
+
+			<result name="update" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">SchoolManagerInfo</param>
+			</result>
+			<!-- 修改密码 -->
+			<result name="updatepwd">/WEB-INF/view/school/updatePwd.jsp</result>
+			<!-- 关于 -->
+			<result name="about">/WEB-INF/view/school/about.jsp</result>
+			<!-- 退出登录 -->
+
+			<result name="exit">/WEB-INF/view/login.jsp</result>
+
+			<!-- 成绩管理 -->
+			<result name="scoerManager">/WEB-INF/view/school/ScoerManager.jsp</result>
+
+			<!-- 点击录入跳转成绩录入界面 -->
+
+			<result name="scoreinput">/WEB-INF/view/school/scoerInput.jsp</result>
+			<!-- 成绩录入完成跳转 -->
+			<result name="confirmscore" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">scoer</param>
+			</result>
+			<!-- 成绩详情查看 -->
+			<result name="scorecheck">/WEB-INF/view/school/scoreInfo.jsp</result>
+
+			<!-- 考试安排分页界面 -->
+			<result name="scoerlist">/WEB-INF/view/school/examPlan.jsp</result>
+
+			<!-- 成绩管理界面分页功能 -->
+			<result name="scoermanage">/WEB-INF/view/school/ScoerManager.jsp</result>
+			<!-- 考试详情界面分页 -->
+			<result name="examInfolist">/WEB-INF/view/school/ExamInfo.jsp</result>
+			<!-- 考试录入界面分页 -->
+			<result name="scoreinputlist">/WEB-INF/view/school/scoerInput.jsp</result>
+			<!-- 考试成绩查看界面分页 -->
+			<result name="scorechecklist">/WEB-INF/view/school/scoreInfo.jsp</result>
+			<!-- 学生审核界面 -->
+			<result name="studentVerify">/WEB-INF/view/school/verifyStudent.jsp</result>
+
+			<!-- 学生审核状态改变 -->
+			<result name="verified" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">studentVerify</param>
+			</result>
+			<!-- 批量通过审核 -->
+			<result name="verifiedall" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">studentVerify</param>
+			</result>
+<!-- 学员审核界面分页 -->
+             <result name="studentVerifylist">/WEB-INF/view/school/verifyStudent.jsp</result>
+
+
+
+		</action>
+
+		<action name="updpwd" class="org.great.web.DriveSchoolUserAction1"
+			method="pwdcoinfim">
+		</action>
+		<!-- ========================================================================================================== -->
+
+
+ <action name="DriveSchoolUserAction" class="driveSchoolUserAction" method="findAllUser">
+	 <result name="success">/WEB-INF/view/school/schooluser.jsp</result>
+	 </action>
+	 
+	 <!--跳页查找  -->
+	  <action name="findByPage" class="driveSchoolUserAction" >
+	  <result name="success" type="redirectAction">searchUser</result>
+	 </action>
+	 
+	 
+	 <action name="toUpdatePage" class="driveSchoolUserAction" method="toUpdatePage">
+	 <result name="success">/WEB-INF/view/school/updateStudent.jsp</result>
+	 </action>
+	 
+	 <action name="updateUser" class="driveSchoolUserAction" method="updateUser">
+	 <result name="success">/WEB-INF/view/school/schooluser.jsp</result>
+	 </action>
+	 
+	 <action name="allUserInf" class="driveSchoolUserAction" method="allUserInf">
+	 <result name="success">/WEB-INF/view/school/schoolStudentIfo.jsp</result>
+	 </action>
+	 
+	 <action name="toCreateUser" class="driveSchoolUserAction" method="toCreateUser">
+	 <result name="success">/WEB-INF/view/school/createUser.jsp</result>
+	 </action>
+	 
+	 <action name="createUser" class="driveSchoolUserAction" >
+	 <result name="success" type="redirectAction">DriveSchoolUserAction</result>
+	 <result name="input" >/WEB-INF/view/school/cerateUserError.jsp</result>
+	 </action>
+	 <action name="createAllUser" class="driveSchoolUserAction" method="createAllUser">
+	 <result name="success" type="redirectAction">DriveSchoolUserAction</result>
+	 </action>
+	 
+	 <action name="delectUser" class="driveSchoolUserAction" method="delectUser">
+	 <result name="success" type="redirectAction">DriveSchoolUserAction</result>
+	 </action>
+	 
+	 <action name="searchUser" class="driveSchoolUserAction" method="searchUser">
+	  <result name="success">/WEB-INF/view/school/schooluser.jsp</result>
+	 </action>
+	 <!-- 驾校学员部分完成       -->
+	 
+	 
+	 
+	  <!-- 驾校教练部分 -->
+	 <action name="driveSchoolTeacher" class="driveSchoolTeacherAction" method="findTeacher">
+	 <result name="success">/WEB-INF/view/school/schoolTeacher.jsp</result>
+	 </action>
+	
+	 <action name="TeacherAction" class="driveSchoolTeacherAction" >
+	 <result name="toCreatepage" >/WEB-INF/view/school/createTeacher.jsp</result>
+	 <result name="success" >/WEB-INF/view/school/schoolTeacher.jsp</result>
+	 <result name="teacherInfo" >/WEB-INF/view/school/schoolteacherIfo.jsp</result>
+	 <result name="teacherUpdate" >/WEB-INF/view/school/updateTeacher.jsp</result>
+	 </action>
+<action  name="Notice" class="schoolNoticeAction">
+		<result name="success" >/WEB-INF/view/school/schoolBoard.jsp</result>
+		<result name="check" >/WEB-INF/view/school/schoolBoardcheck.jsp</result>
+		<result name="checkd" >/WEB-INF/view/school/schoolNoticeChecked.jsp</result>
+		<result name="sendNotice" >/WEB-INF/view/school/sendStuNote.jsp</result>
+		<result name="toSendedNotice" >/WEB-INF/view/school/schoolNoticeSended.jsp</result>
+		</action>
+
+
+
+		<!-- ========================================================================================================== -->
+		<!-- ========================================================================================================== -->
+
+
+		<action name="upload" class="org.great.web.UploadAction">
+			<result name="success">/WEB-INF/student/success.jsp</result>
+		</action>
+
+	</package>
+
+
+
+	<!-- ======================================================================================================== -->
+
+
+	 
+    <package name="upload" namespace="/upload"  extends="struts-default">
+	 <action name="uploaduser" class="org.great.web.UserUploadAction" >
+	 <result name="success" type="redirectAction">DriveSchoolUserAction</result>
+	 </action>
+	 <action name="uploadteacher" class="org.great.web.TeacherUploadAction" >
+	 <result name="success" type="redirectAction">DriveSchoolTeacherAction</result>
+	 </action>
+	 
+	 
+	 
+	 <action name="DriveSchoolTeacherAction" class="driveSchoolTeacherAction" method="findTeacher">
+	 <result name="success">/WEB-INF/view/school/schoolTeacher.jsp</result>
+	 </action>
+	 <action name="DriveSchoolUserAction" class="driveSchoolUserAction" method="findAllUser">
+	 <result name="success">/WEB-INF/view/school/schooluser.jsp</result>
+	 </action>
+	</package>
+ 
+	<!-- 学生注册功能包 -->
+	<package name="studentRegister" namespace="/studentRegister"
+		extends="struts-default">
+
+		<action name="register" class="org.great.web.StudentRegisterAction">
+			<result name="success">/WEB-INF/view/mid.jsp</result>
+
+		</action>
+
+
+
+	</package>
+<!-- ====================================驾校平台========================================================================= -->
+<!-- ====================================驾校平台========================================================================= -->
+<!-- ====================================驾校平台========================================================================= -->
+
+<package name="student" namespace="/student" extends="json-default">
+
+		<!-- 主界面 -->
+		<action name="toMain" class="org.great.web.MainAction" method="mainInit">
+			<result name="success">/WEB-INF/student/index.jsp</result>
+			<result name="welcomeToStudent">/WEB-INF/student/welcomeToStudent.jsp</result>
+		</action>
+		<!-- 查询公告消息 -->
+		<action name="toTransNotice" class="org.great.web.TransNoticeAction1">
+			<result name="success">/WEB-INF/student/notice.jsp</result>
+			<result name="toNoticeShow">/WEB-INF/student/noticeShow.jsp</result>
+		</action>
+		<!-- 查看回复 -->
+		<action name="toRreply" class="org.great.web.ReplyMailAction">
+			<result name="success">/WEB-INF/student/reply.jsp</result>
+			<result name="delRreplyInfoSuccess">/WEB-INF/student/reply.jsp</result>
+			<result name="toSeeTheMail">/WEB-INF/student/seeTheMail.jsp</result>
+			<result name="toSeeReply">/WEB-INF/student/seeReply.jsp</result>
+		</action>
+		<!-- 发送邮件 -->
+		<action name="toSendMail" class="org.great.web.SendMailAction">
+			<result name="success">/WEB-INF/student/sendMail.jsp</result>
+			<result name="subSuccess">/WEB-INF/student/success.jsp</result>
+		</action>
+		<!-- 评价驾校 -->
+		<action name="toSchoolEvaluationAction" class="org.great.web.SchoolEvaluationAction">
+			<result name="success">/WEB-INF/student/evaluateSchool.jsp</result>
+			<result name="successResult">/WEB-INF/student/success.jsp
+			</result>
+			<result name="failResult">/WEB-INF/student/evaluateSchoolFailResult.jsp
+			</result>
+		</action>
+		<!-- 评价教练 -->
+		<action name="toTeacherEvalution" class="org.great.web.TeacherEvalutionAction">
+			<result name="success">/WEB-INF/student/evaluateTeacherChoise.jsp
+			</result>
+			<result name="successToevaluateTeacher">/WEB-INF/student/evaluateTeacher.jsp</result>
+			<result name="successToSuccess">/WEB-INF/student/success.jsp
+			</result>
+
+		</action>
+		<!-- 修改密码 -->
+		<action name="toChangePass" class="org.great.web.ChangePassAction">
+			<result name="success">/WEB-INF/student/changePass.jsp</result>
+			<result name="error">/WEB-INF/student/wrong.jsp</result>
+		</action>
+		<!-- 查学时 -->
+		<action name="toFindStudentTime" class="org.great.web.FindStudentTimeAction">
+			<result name="success">/WEB-INF/student/findStudentTime.jsp</result>
+		</action>
+		<!-- 查考试 -->
+		<action name="toFindExam" class="org.great.web.FindExamAction">
+			<result name="success">/WEB-INF/student/findExam.jsp</result>
+		</action>
+		<action name="toAbout" class="org.great.web.AboutAction">
+			<result name="success">/WEB-INF/student/about.jsp</result>
+		</action>
+		<action name="toPay"><result>/WEB-INF/student/pay.jsp</result></action>
+		
+		
+	</package>
+	<!-- 主页 -->
+<package name="main" namespace="/main" extends="json-default">
+<action name="toMain"><result>/WEB-INF/main/index.jsp</result></action>
+<action name="toRegister"><result>/WEB-INF/view/school/studentRegister.jsp</result></action>
+<action name="toLogin"><result>/WEB-INF/view/login.jsp</result></action>
+</package>
+<!-- ====================================学生平台========================================================================= -->
+<!-- ====================================学生平台========================================================================= -->
+<!-- ====================================学生平台========================================================================= -->
+<!-- 运管的包 -->
+	<package name="transportPackage" namespace="/transport" extends="struts-default">
+		<!-- <interceptors>
+			登录拦截器
+			<interceptor name="transLoginInterceptor" class="org.great.interceptor.TransportLoginInterceptor"></interceptor>
+			拦截器栈
+			<interceptor-stack name="transLoginStack">
+				<interceptor-ref name="defaultStack"></interceptor-ref>
+				<interceptor-ref name="transLoginInterceptor"></interceptor-ref>
+			</interceptor-stack>
+		</interceptors> -->
+		<!-- 全局拦截器  -->
+		<!-- <default-interceptor-ref name="transLoginStack"></default-interceptor-ref> -->
+		<!-- 全局result -->
+		<!-- <global-results>
+			<result name="loginView">/WEB-INF/login.jsp</result>
+		</global-results> -->
+
+		<!-- 登入界面-->
+		<action name="transportMenu">
+			<result name="success">/WEB-INF/view/transport/transportMenuPage.jsp</result>
+		</action>
+		<!-- 运管平台主界面 -->
+		<action name="transportMain">
+			<result name="success">/WEB-INF/view/transport/transportMainPage.jsp</result>
+		</action>
+		<!-- 用户管理界面 -->
+		<action name="managerManagementAction" class="org.great.web.ManagerManagementAction">
+			<result name="success">/WEB-INF/view/transport/managerManagementPage.jsp</result>
+			<result name="createManagerPage">/WEB-INF/view/transport/createManagerPage.jsp</result>
+			<result name="alterManagerPage">/WEB-INF/view/transport/alterManagerPage.jsp</result>
+			<result name="managerDetailPage">/WEB-INF/view/transport/managerDetailPage.jsp</result>
+			<result name="createManagerBatchPage">/WEB-INF/view/transport/createManagerBatchPage.jsp</result>
+			<result name="createManagerDetailPage">/WEB-INF/view/transport/createManagerDetailPage.jsp</result>
+		</action>
+		<!-- 用户权限管理界面 -->
+		<action name="managerJurisdictionAction" class="org.great.web.ManagerJurisdictionAction">
+			<result name="success">/WEB-INF/view/transport/managerJurisdictionPage.jsp</result>
+			<result name="jurisdictionDetailPage">/WEB-INF/view/transport/jurisdictionDetailPage.jsp</result>
+			<result name="jurisdictionAlterPage">/WEB-INF/view/transport/jurisdictionAlterPage.jsp</result>
+		</action>
+		<!-- 驾校管理界面 -->
+		<action name="schoolManagementAction" class="org.great.web.SchoolManagementAction">
+			<result name="success">/WEB-INF/view/transport/schoolManagementPage.jsp</result>
+			<result name="alterSchoolPage">/WEB-INF/view/transport/alterSchoolPage.jsp</result>
+			<result name="schoolDetailPage">/WEB-INF/view/transport/schoolDetailPage.jsp</result>
+			<result name="createSchoolPage">/WEB-INF/view/transport/createSchoolPage.jsp</result>
+			<result name="createSchoolBatchPage">/WEB-INF/view/transport/createSchoolBatchPage.jsp</result>
+			<result name="createSchoolDetailPage">/WEB-INF/view/transport/createSchoolDetailPage.jsp</result>
+		</action>
+		<!-- 驾校审核界面 -->
+		<action name="schoolVerifyAction" class="org.great.web.SchoolVerifyAction">
+			<result name="success">/WEB-INF/view/transport/schoolVerifyPage.jsp</result>
+			<result name="verifySchoolDetailPage">/WEB-INF/view/transport/verifySchoolDetailPage.jsp</result>
+		</action>
+		<!-- 设置的action -->
+		<action name="settingAction" class="org.great.web.SettingAction">
+			<result name="revisePasswordPage">/WEB-INF/view/transport/revisePasswordPage.jsp</result>
+			<result name="aboutPage">/WEB-INF/view/transport/aboutPage.jsp</result>
+			<result name="revisePersonInfoPage">/WEB-INF/view/transport/revisePersonInfoPage.jsp</result>
+		</action>
+		<!-- 邮箱的action -->
+		<action name="mailAction" class="org.great.web.MailAction">
+			<result name="checkMailPage">/WEB-INF/view/transport/checkMailPage.jsp</result>
+			<result name="mailDetailPage">/WEB-INF/view/transport/mailDetailPage.jsp</result>
+			<result name="mailReplyPage">/WEB-INF/view/transport/mailReplyPage.jsp</result>
+		</action>
+
+		<!-- 数据统计的action -->
+		<action name="statisticsAction" class="org.great.web.StatisticsAction">
+			<result name="statisticsPage">/WEB-INF/view/transport/statisticsPage.jsp</result>
+		</action>
+
+		<!-- 出现公告管理界面    并且显示所有的公告消息-->
+         <action name="noticeView" class="org.great.web.TransNoticeAction" method="noticePreview">
+              <result name="success">/WEB-INF/view/transport/noticeManagementPage.jsp</result>
+         </action>
+         <!-- 出现发布公告界面 -->
+         <action name="noticeAnnounce" class="org.great.web.TransNoticeAction">
+              <result name="success">/WEB-INF/view/transport/announceNoticePage.jsp</result>
+         </action>
+         <!-- 删除某条公告的操作 -->
+         <action name="deleteNotice" class="org.great.web.TransNoticeAction" method="noticeDelete">
+              <result name="success">/WEB-INF/view/transport/noticeManagementPage.jsp</result>
+         </action>
+         <!-- 公告的详情操作 -->
+         <action name="notinceParticulars" class="org.great.web.TransNoticeAction" method="Particulars">
+              <result name="success">/WEB-INF/view/transport/noticeDetailPage.jsp</result>
+         </action>
+         <!-- 发布公告的操作 -->
+         <action name="announcenNotice" class="org.great.web.TransNoticeAction" method="noticeAnno">
+              <result name="success">/WEB-INF/view/transport/announceNoticePage.jsp</result>
+         </action>
+         <!-- 搜索公告的操作  -->
+         <action name="searchNotice" class="org.great.web.TransNoticeAction" method="noticeSearch">
+               <result name="success">/WEB-INF/view/transport/noticeManagementPage.jsp</result>
+         </action>
+	</package>
+	
+    
+	<!-- ajax的包 -->
+	<package name="ajaxPackage" namespace="/ajax" extends="json-default">
+		<!-- 切换驾校的ajax -->
+		<action name="changeSchool" class="org.great.web.ManagerJurisdictionAction" method="changeSchool">
+			<result name="success" type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+		
+		<!-- 验证驾校管理员账号的ajax -->
+		<action name="checkManagerAccount" class="org.great.web.ManagerManagementAction" method="checkManagerAccout">
+			<result name="success" type="json">
+				<param name="root">jsonResult</param>
+			</result>
+		</action>
+	</package>
+</struts>

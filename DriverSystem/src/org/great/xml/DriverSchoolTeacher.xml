@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管人员自身的后台的数据库调用的xml -->
+<mapper namespace="org.great.mapper.TeacherMapper">
+	<!-- 根据账号，密码查找到一个用户 -->
+	<select id="findTeacher" resultType="org.great.bean.TeacherBean">
+		SELECT * FROM ( SELECT A.*,
+		ROWNUM RN
+		FROM (SELECT * FROM teacher) A WHERE ROWNUM &lt;= 11) WHERE
+		RN &gt;= 1
+		and nvl(TEACHER_NAME,'xx') &lt;&gt;'未分配'
+		and
+		nvl(TEACHER_NAME,'xx')&lt;&gt;'未分配'
+	</select>
+
+	<!-- 按页码查找 -->
+	<select id="findTeacherByPage" resultType="org.great.bean.TeacherBean">
+		SELECT * FROM ( SELECT
+		A.*, ROWNUM RN
+		FROM (SELECT * FROM teacher) A WHERE ROWNUM &lt;=
+		#{pagemax}) WHERE RN
+		&gt;= #{pagemin}
+
+	</select>
+
+
+   <delete id="teacherDelete" >
+      
+        update teacher set teacher_state='冻结' where teacher_id=#{teacher_id}
+      
+      
+      </delete>
+
+
+	<!-- and TEACHER_EVAL_SCORE &lt;='8' and TEACHER_EVAL_SCORE &gt;='4' -->
+
+	<select id="searchTeacher" resultType="org.great.bean.TeacherBean">
+		SELECT * FROM (select t.*,c.COURSE_name from teacher t left join
+		course c on t.course_id=c.course_id
+		<where>
+			and TEACHER_EVAL_SCORE &lt;=#{maxgoal} and TEACHER_EVAL_SCORE
+			&gt;=#{mingoal}
+			and nvl(TEACHER_NAME,'xx') &lt;&gt;'未分配'
+			and
+			nvl(TEACHER_NAME,'xx')&lt;&gt;'未分配'
+			<if test="teacher_name!=null and teacher_name!='' ">
+				and teacher_name like
+				concat(concat('%',#{teacher_name}),'%')
+			</if>
+			<if test="teacher_sex!='全部' ">
+				and teacher_sex=#{teacher_sex}
+			</if>
+			<if test="course_id!='全部' ">
+				and t.course_id=#{course_id}
+			</if>
+		</where>
+
+		)where rownum &lt; #{pagemax}  and teacher_STATE ! = '冻结'  minus
+		SELECT * FROM (select
+		t.*,c.COURSE_name from teacher t left join course c on
+		t.course_id=c.course_id
+		<where>
+			and TEACHER_EVAL_SCORE &lt;=#{maxgoal} and TEACHER_EVAL_SCORE
+			&gt;=#{mingoal}
+			and nvl(TEACHER_NAME,'xx') &lt;&gt;'未分配'
+			and
+			nvl(TEACHER_NAME,'xx')&lt;&gt;'未分配'
+
+			<if test="teacher_name!=null and teacher_name!='' ">
+				and teacher_name like
+				concat(concat('%',#{teacher_name}),'%')
+			</if>
+			<if test="teacher_sex!='全部' ">
+				and teacher_sex=#{teacher_sex}
+			</if>
+			<if test="course_id!='全部' ">
+				and t.course_id=#{course_id}
+			</if>
+		</where>
+		)where rownum &lt; #{pagemin} and teacher_STATE ! = '冻结'
+	</select>
+
+
+	<select id="teacherallNum" resultType="java.lang.Integer">
+		select count(1) from
+		TEACHER>
+
+	</select>
+	<select id="searchCourseId" resultType="org.great.bean.Course">
+		select * from course where course_name=#{course_name}
+		
+
+	</select>
+
+	<select id="teacherNum" resultType="java.lang.Integer">
+		select count(1) from TEACHER
+		<where>
+			and teacher_STATE ! = '冻结'
+			and TEACHER_EVAL_SCORE &lt;=#{maxgoal} and TEACHER_EVAL_SCORE
+			&gt;=#{mingoal}
+			and nvl(TEACHER_NAME,'xx') &lt;&gt;'未分配'
+			and
+			nvl(TEACHER_NAME,'xx')&lt;&gt;'未分配'
+
+			<if test="teacher_name!=null and teacher_name!='' ">
+				and teacher_name like
+				concat(concat('%',#{teacher_name}),'%')
+			</if>
+			<if test="teacher_sex!='全部' ">
+				and teacher_sex=#{teacher_sex}
+			</if>
+			<if test="course_id!='全部' ">
+				and course_id=#{course_id}
+			</if>
+
+		</where>
+
+	</select>
+
+
+
+	<select id="selectByTeacherId" resultType="org.great.bean.TeacherBean">
+
+		select t.*,c.course_name from teacher t left join course c on
+		t.course_id=c.course_id where teacher_id=#{teacher_id}
+
+	</select>
+<select id="selectStudent" resultType="org.great.bean.StudentBean">
+	select * from student where teacher_id=#{teacher_id}
+
+</select> 
+
+
+
+
+	<insert id="createTeacher">
+		<selectKey keyProperty="TEACHER_ID" order="BEFORE"
+			resultType="java.lang.String">
+			select SEQ_TEACHER.nextval from dual
+		</selectKey>
+
+		insert into TEACHER(
+		teacher_id,teacher_account,teacher_password,
+		teacher_name,teacher_identification,
+		teacher_sex,teacher_province,teacher_city,
+		teacher_address,teacher_phone,teacher_state,
+		teacher_eval_score,course_id,school_id)
+		values
+		(SEQ_TEACHER.nextval,#{teacher_account},
+		#{teacher_password},#{teacher_name},
+		#{teacher_identification},#{teacher_sex},
+		#{teacher_province},#{teacher_city},
+		#{teacher_address},#{teacher_phone},
+		#{teacher_state},#{teacher_eval_score},
+		#{course_id},#{school_id})
+	</insert>
+
+
+<!-- <update id="upadateTeacher">
+
+update  teacher set student_identification = #{student_identification}
+where teacher_id=#{teacher_id}
+</update> -->
+ <!-- <update id="updateUser" >
+           update  STUDENT set student_identification = #{student_identification},
+           student_name=#{student_name},student_sex=#{student_sex},
+           student_province=#{student_province},student_city=#{student_city},
+           student_phone=#{student_phone},student_address=#{student_address},teacher_id=#{teacher_id} where student_id=#{student_id}
+      </update> -->
+
+  <update id="upadateTeacher">
+update teacher set teacher_name=#{teacher_name},
+teacher_identification=#{teacher_identification},
+teacher_sex=#{teacher_sex},
+teacher_address=#{teacher_address},
+teacher_phone=#{teacher_phone},
+teacher_province=#{teacher_province},
+teacher_city=#{teacher_city},
+course_id=#{course_id}
+where teacher_id=#{teacher_id}
+</update>  
+
+
+
+
+
+</mapper>

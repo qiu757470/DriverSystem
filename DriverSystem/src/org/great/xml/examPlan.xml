@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管平台对考试安排表操作xml文件 -->
+<mapper  namespace="org.great.mapper.ExamPlanMapper">
+	
+	<delete id="deleteByTeacherId" parameterType="java.lang.String">
+		delete from exam_plan where teacher_id = #{teacher_id}
+	</delete>
+	
+	<delete id="deleteBySchoolId" parameterType="java.lang.String">
+		delete from exam_plan where school_id = #{school_id}
+	</delete>
+	
+	<select id="findByTeacherId" parameterType="java.lang.String" resultType="org.great.bean.ExamPlan">
+		select * from exam_plan where teacher_id = #{teacher_id}
+	</select>
+	
+	<select id="findBySchoolId" parameterType="java.lang.String" resultType="org.great.bean.ExamPlan">
+		select * from exam_plan where school_id = #{school_id}
+	</select>
+</mapper>

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<!-- <constant name="struts.devMode" value="true" /> -->
+	<!-- 运管内容 -->
+	<package name="loginPackage" namespace="/" extends="struts-default">
+
+		<!-- 登入界面 -->
+		<action name="login">
+			<result name="success">/WEB-INF/view/login.jsp</result>
+		</action>
+
+		<!-- 所有平台登录的action -->
+		<action name="loginAction" class="loginAction" method="login">
+			<result name="transSuccess">/WEB-INF/view/transport/transport.jsp</result>
+			<result name="schoolSuccess">/WEB-INF/view/school/index.jsp</result>
+			<result name="schoolFail">/WEB-INF/view/school/school2.jsp </result>
+			<result name="input">/WEB-INF/view/login.jsp</result>
+		</action>
+		<!-- menu显示界面 -->
+		<action name="menuAction" class="loginAction" method="menu">
+			<result name="menu">/WEB-INF/view/school/menu.jsp </result>
+		</action>
+
+		<action name="menuAction2" class="loginAction" method="menu2">
+			<result name="menu">/WEB-INF/view/school/menu2.jsp </result>
+		</action>
+
+		<action name="certificed" class="loginAction" method="certificted">
+			<result name="certificed">/WEB-INF/view/school/certification.jsp </result>
+		</action>
+
+		<!-- //审核通过界面 -->
+		<action name="certificedPass" class="loginAction" method="certifictedpass">
+			<result name="success">/WEB-INF/view/school/certifiedPass.jsp</result>
+		</action>
+
+	</package>
+
+	<package name="transportPackage" namespace="/transport"
+		extends="struts-default">
+
+		<!-- 登入界面 -->
+		<action name="transportMenu">
+			<result name="success">/WEB-INF/view/transport/transportMenu.jsp
+			</result>
+		</action>
+
+	</package>
+	<!--设置上传文件最大值 -->
+	<constant name="struts.multipart.maxSize" value="5242880" />
+	<constant name="struts.multipart.saveDir" value="/tempUpload" />
+
+
+	<!-- 驾校平台action -->
+	<package name="driveSchool" namespace="/driveSchool" extends="json-default">
+		<action name="toMain">
+			<result>/WEB-INF/view/school/index.jsp</result>
+		</action>
+		<!-- 登入界面 -->
+		<action name="schoolCertified" class="org.great.web.DriveSchoolUserAction1">
+			<result name="success">/WEB-INF/view/school/certification.jsp</result>
+			<result name="plan">/WEB-INF/view/school/examPlan.jsp</result>
+
+			<result name="deleteplan" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">examplan</param>
+			</result>
+
+			<result name="upexam">/WEB-INF/view/school/examPlanUpdate.jsp</result>
+
+			<result name="confirm" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">examplan</param>
+			</result>
+
+			<result name="info">/WEB-INF/view/school/ExamInfo.jsp</result>
+
+			<result name="newExam">/WEB-INF/view/school/newExam.jsp</result>
+
+			<result name="conNewExam" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">examplan</param>
+			</result>
+
+			<!-- 新建考试界面通过科目选择学生 -->
+			<result name="selectstu" type="json">
+				<param name="root">result</param>
+			</result>
+
+			<!-- 驾校管理员修改个人信息界面 -->
+			<result name="SchoolManagerInfo">/WEB-INF/view/school/schoolManagerInfo.jsp
+			</result>
+			<result name="SchoolManagerInfoupdate">/WEB-INF/view/school/shoolMangerInfoUpdate.jsp
+			</result>
+
+			<result name="update" type="redirectAction">
+				<param name="namespace">/driveSchool</param>
+				<param name="actionName">schoolCertified</param>
+				<param name="method">SchoolManagerInfo</param>
+			</result>
+			<!-- 修改密码 -->
+			<result name="updatepwd">/WEB-INF/view/school/updatePwd.jsp</result>
+			<!-- 关于 -->
+			<result name="about">/WEB-INF/view/school/about.jsp</result>
+			<!-- 退出登录 -->
+
+			<result name="exit">/WEB-INF/view/login.jsp</result>
+
+			<!-- 成绩管理 -->
+			<result name="scoerManager">/WEB-INF/view/school/ScoerManager.jsp</result>
+			
+			
+			
+			
+
+		</action>
+
+		<action name="updpwd" class="org.great.web.DriveSchoolUserAction1"
+			method="pwdcoinfim">
+		</action>
+		<!-- ========================================================================================================== -->
+
+
+		<action name="DriveSchoolUserAction" class="driveSchoolUserAction"
+			method="findAllUser">
+			<result name="success">/WEB-INF/view/school/schooluser.jsp</result>
+		</action>
+
+		<!--跳页查找 -->
+		<action name="findByPage" class="driveSchoolUserAction">
+			<result name="success" type="redirectAction">searchUser</result>
+		</action>
+
+
+		<action name="toUpdatePage" class="driveSchoolUserAction"
+			method="toUpdatePage">
+			<result name="success">/WEB-INF/view/school/updateStudent.jsp</result>
+		</action>
+
+		<action name="updateUser" class="driveSchoolUserAction" method="updateUser">
+			<result name="success">/WEB-INF/view/school/schooluser.jsp</result>
+		</action>
+
+		<action name="allUserInf" class="driveSchoolUserAction" method="allUserInf">
+			<result name="success">/WEB-INF/view/school/schoolStudentIfo.jsp
+			</result>
+		</action>
+
+		<action name="toCreateUser" class="driveSchoolUserAction"
+			method="toCreateUser">
+			<result name="success">/WEB-INF/view/school/createUser.jsp</result>
+		</action>
+
+		<action name="createUser" class="driveSchoolUserAction" method="createUser">
+			<result name="success" type="redirectAction">DriveSchoolUserAction</result>
+			<result name="input">/WEB-INF/view/school/cerateUserError.jsp
+			</result>
+		</action>
+		<action name="createAllUser" class="driveSchoolUserAction"
+			method="createAllUser">
+			<result name="success" type="redirectAction">DriveSchoolUserAction</result>
+		</action>
+
+		<action name="delectUser" class="driveSchoolUserAction" method="delectUser">
+			<result name="success" type="redirectAction">DriveSchoolUserAction</result>
+		</action>
+
+		<action name="searchUser" class="driveSchoolUserAction" method="searchUser">
+			<result name="success">/WEB-INF/view/school/schooluser.jsp</result>
+		</action>
+		<!-- 驾校学员部分完成 -->
+
+
+		<!-- 驾校教练部分 -->
+		<action name="driveSchoolTeacher" class="driveSchoolTeacherAction"
+			method="findTeacher">
+			<result name="success">/WEB-INF/view/school/schoolTeacher.jsp</result>
+		</action>
+
+		<action name="TeacherAction" class="driveSchoolTeacherAction">
+			<result name="success">/WEB-INF/view/school/schoolTeacher.jsp
+			</result>
+			<result name="teacherInfo">/WEB-INF/view/school/schoolteacherIfo.jsp
+			</result>
+			<result name="teacherUpdate">/WEB-INF/view/school/updateTeacher.jsp
+			</result>
+		</action>
+
+
+		<!-- ========================================================================================================== -->
+		<!-- ========================================================================================================== -->
+
+
+		<action name="upload" class="org.great.web.UploadAction">
+			<result name="success" type="redirectAction">
+				<param name="namespace">/</param>
+				<param name="actionName">certificed</param>
+				<param name="method">certificted</param>
+			</result>
+		</action>
+
+	</package>
+
+
+	<!-- ======================================================================================================== -->
+
+
+	<package name="upload" namespace="/upload" extends="struts-default">
+		<action name="uploaduser" class="org.great.web.UserUploadAction">
+			<result name="success" type="redirectAction">DriveSchoolUserAction</result>
+		</action>
+
+
+		<action name="uploadteacher" class="org.great.web.TeacherUploadAction">
+			<result name="success" type="redirectAction">DriveSchoolTeacherAction</result>
+		</action>
+
+
+
+		<action name="DriveSchoolTeacherAction" class="driveSchoolTeacherAction"
+			method="findTeacher">
+			<result name="success">/WEB-INF/view/school/schoolTeacher.jsp</result>
+		</action>
+		<action name="DriveSchoolUserAction" class="driveSchoolUserAction"
+			method="findAllUser">
+			<result name="success">/WEB-INF/view/school/schooluser.jsp</result>
+		</action>
+	</package>
+
+
+
+
+
+</struts>

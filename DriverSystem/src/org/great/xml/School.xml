@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+
+<mapper namespace="org.great.mapper.SchoolMapper">
+
+<!-- 通过省份城市找学校 -->
+
+<select id="selectSchoolByProcity" resultType="org.great.bean.School">
+
+select * from School where school_province=#{school_province} and school_city=#{school_city}
+
+</select>
+
+<!-- 通过学校找教练 -->
+<select id="selectTeacherBySchool" resultMap="teacherschool" >
+select * from teacher te left join school sch on te.school_id=sch.school_id
+where te.school_id=#{school_id}
+</select>
+
+<resultMap type="org.great.bean.Teacher" id="teacherschool">
+<id property="teacher_id" column="teacher_id"/>
+<result property="teacher_name" column="teacher_name"/>
+<association property="school" resultMap="schoolinfo"></association>
+</resultMap>
+<resultMap type="org.great.bean.School" id="schoolinfo">
+<id property="school_id" column="school_id"/>
+<result property="school_name" column="school_name"/>
+</resultMap>
+
+
+<!-- 学生注册 -->
+<insert id="insertStudent" parameterType="org.great.bean.Student">
+insert into student(student_id,student_identification,student_password,student_name,student_sex,student_province,student_city,student_phone,student_state,school_id,course_id,teacher_id,student_register_time)
+values(SEQ_STUDENT.nextval,#{student_identification},#{student_password},#{student_name},#{student_sex},#{student_province},
+#{student_city},#{student_phone},#{student_state},#{school_id},#{course_id},#{teacher_id},#{student_register_time})
+
+</insert>
+
+<select id="selectAllFromSchool" resultType="org.great.bean.School">
+select * from school
+</select>
+<select id="selectStudentAndSchoolByStudentId" resultType="org.great.bean.School">
+		select * from student s left join school sch on
+		s.school_id=sch.school_id where
+		student_id=#{student_id}
+	</select>
+
+
+     <!-- 根据省份和城市找到驾校，ajax -->
+      <select id="findByProvinceAndCity" resultType="org.great.bean.School" parameterType="java.lang.String">
+           select school_name from school 
+			<trim prefix="WHERE" prefixOverrides="AND |OR"> 1 = 1
+	     		<if test="province != null and province != '' and province != '全部'">
+	     			AND school_province = #{province}
+	     		</if>
+	     		<if test="city != null and city != '' and city != '全部'">
+	     			AND school_city = #{city}
+	     		</if>
+     		</trim>
+      </select>
+      
+      <select id="findAll" resultType="org.great.bean.School">
+      	select * from school
+      </select>
+      
+      <select id="findAllSchools" parameterType="map" resultType="org.great.bean.School">
+      	select * from school
+      	<if test="schoolOrderType != null and schoolOrderType != '' and schoolOrderType != 'defaultOrder'">
+     			order by ${schoolOrderType} ${orderSeq}
+     	</if>
+      </select>
+      
+      
+       <select id="findAllSchoolsUnverify" parameterType="map" resultType="org.great.bean.School">
+      	select * from school where school_state = '未审核'
+      	<if test="schoolOrderType != null and schoolOrderType != '' and schoolOrderType != 'defaultOrder'">
+     			order by ${schoolOrderType} ${orderSeq}
+     	</if>
+      </select>
+      
+      
+      <select id="findByProvinceAndCityAndName" parameterType="java.lang.String" resultType="org.great.bean.School">
+      		select * from school
+      		<trim prefix="WHERE" prefixOverrides="AND |OR"> 1 = 1
+	     		<if test="school_province != null and school_province != '' and school_province != '全部'">
+	     			AND school_province = #{school_province}
+	     		</if>
+	     		<if test="school_city != null and school_city != '' and school_city != '全部'">
+	     			AND school_city = #{school_city}
+	     		</if>
+	     		<if test="school_name != null and school_name != '' and school_name != '全部'">
+	     			AND school_name = #{school_name}
+	     		</if>
+     		</trim>
+      </select>
+      
+       <!-- 根据搜索内容搜索用户 -->
+      <select id="searchSchool" parameterType="org.great.bean.SchoolSearch" resultType="org.great.bean.School">
+     	select * from school
+     	<trim prefix="WHERE" prefixOverrides="AND |OR"> 1 = 1
+     		<if test="school_name != null and school_name != ''">
+     			AND school_name like  concat(concat('%',#{school_name}),'%')
+     		</if>
+     		<if test="school_province != null and school_province != '' and school_province != '全部'">
+     			AND school_province = #{school_province}
+     		</if>
+     		<if test="school_city != null and school_city != '' and school_city != '全部'" >
+     			AND school_city = #{school_city}
+     		</if>
+     		<if test="school_state != null and school_state != '' and school_state != '全部'">
+     			AND school_state = #{school_state}
+     		</if>
+     	</trim>
+     	 <if test="schoolOrderType != null and schoolOrderType != '' and schoolOrderType != 'defaultOrder'">
+     			order by ${schoolOrderType} ${orderSeq}
+     	 </if>
+      </select>
+
+
+	 <!-- 根据搜索内容搜索用户 -->
+      <select id="searchSchoolUnverify" parameterType="org.great.bean.SchoolSearch" resultType="org.great.bean.School">
+     	select * from school
+     	<trim prefix="WHERE" prefixOverrides="AND |OR"> 1 = 1
+     		<if test="school_name != null and school_name != ''">
+     			AND school_name like  concat(concat('%',#{school_name}),'%')
+     		</if>
+     		<if test="school_province != null and school_province != '' and school_province != '全部'">
+     			AND school_province = #{school_province}
+     		</if>
+     		<if test="school_city != null and school_city != '' and school_city != '全部'" >
+     			AND school_city = #{school_city}
+     		</if>
+     			AND school_state = '未审核'
+     	</trim>
+     	 <if test="schoolOrderType != null and schoolOrderType != '' and schoolOrderType != 'defaultOrder'">
+     			order by ${schoolOrderType} ${orderSeq}
+     	 </if>
+      </select>
+      
+      <select id="findById" parameterType="java.lang.String" resultType="org.great.bean.School">
+      	select * from school where school_id = #{school_id}
+      </select>
+      
+     <!-- 获得所有驾校的总数 -->
+     <select id="getTotalNum" resultType="java.lang.String">
+     	select max(rownum) from school
+     </select>
+    
+      <!-- 获得所有驾校的总数 （未审核）-->
+     <select id="getTotalNumUnverify" resultType="java.lang.String">
+     	select max(rownum) from school where school_state = '未审核'
+     </select>
+     
+     <delete id="deleteOneById" parameterType="java.lang.String">
+     	delete from school where school_id = #{school_id}
+     </delete>
+     
+     <update id="alterStateAndReason" parameterType="java.lang.String">
+     	update school set school_state = #{school_state}, school_refuse_reason = #{school_refuse_reason} where school_id = #{school_id}
+     </update>
+     
+     
+     <update id="alterOneByBean" parameterType="org.great.bean.School">
+     	update school
+     	<trim prefix="set" suffixOverrides=","> 
+     		<if test="school_name != null">
+     			school_name = #{school_name},
+     		</if>
+     		<if test="school_representative_name != null">
+     			school_representative_name = #{school_representative_name},
+     		</if>
+     		<if test="school_representative_id != null">
+     			school_representative_id = #{school_representative_id},
+     		</if>
+     		<if test="school_representative_phone != null">
+     			school_representative_phone = #{school_representative_phone},
+     		</if>
+     		<if test="school_province != null">
+     			school_province = #{school_province},
+     		</if>
+     		<if test="school_city != null">
+     			school_city = #{school_city},
+     		</if>
+     		<if test="school_address != null">
+     			school_address = #{school_address},
+     		</if>
+     		<if test="school_phone != null">
+     			school_phone = #{school_phone},
+     		</if>
+     		<if test="school_certificate != null">
+     			school_certificate = #{school_certificate},
+     		</if>
+     		<if test="school_code != null">
+     			school_code = #{school_code},
+     		</if>
+     	    <if test="school_state != null">
+     			school_state = #{school_state},
+     		</if>
+     	    <if test="school_picture_url != null">
+     			school_picture_url = #{school_picture_url}, 
+     		</if>
+     		<if test="school_homepage != null">
+     			school_homepage = #{school_homepage},
+     		</if>
+     		<if test="school_refuse_reason != null">
+     			school_refuse_reason = #{school_refuse_reason},
+     		</if>
+     		<if test="school_file_url != null">
+     			school_file_url = #{school_file_url},
+     		</if> 
+     		<if test="school_charge != null">
+     			school_charge = #{school_charge}
+     		</if>   
+     	    where school_id = #{school_id}
+     	</trim>
+     </update>
+     <!-- 通过bean插入一条 -->
+     <insert id="addOneByBean" parameterType="org.great.bean.School">
+     	insert into school values(seq_school.nextval, #{school_name}, #{school_representative_name}, #{school_representative_id}, #{school_representative_phone},
+     	#{school_province}, #{school_city}, #{school_address}, #{school_phone}, #{school_certificate}, #{school_code}, #{school_state}, #{school_picture_url}, #{school_homepage},
+     	#{school_refuse_reason}, #{school_file_url}, #{school_charge})
+     </insert>
+     
+     <!-- 获得最大的rownum -->
+     <select id="getMaxId" resultType="java.lang.Integer">
+     	select max(rownum) from school
+     </select>
+     
+    <!--  获得管理员人数 -->
+    <select id="getManagerNum" parameterType="java.lang.String" resultType="java.lang.Integer">
+    	select max(rownum) from school_manager where school_id = #{school_id}
+    </select>
+    
+    <!--  获得教练人数 -->
+    <select id="getTeacherNum" parameterType="java.lang.String" resultType="java.lang.Integer">
+    	select max(rownum) from teacher where school_id = #{school_id}
+    </select>
+    
+    <!--  获得学员人数 -->
+    <select id="getStudentNum" parameterType="java.lang.String" resultType="java.lang.Integer">
+    	select max(rownum) from student where school_id = #{school_id}
+    </select>
+    
+    <!-- 公告用的，根据省市先找到所有的驾校 -->
+      <select id="findSchoolid" resultType="org.great.bean.School">
+            select school_id from school 
+			<trim prefix="WHERE" prefixOverrides="AND |OR"> 1 = 1
+	     		<if test="province != null and province != '' and province != '全部'">
+	     			AND school_province = #{province}
+	     		</if>
+	     		<if test="city != null and city != '' and city != '全部'">
+	     			AND school_city = #{city}
+	     		</if>
+     		</trim>
+      </select>
+
+
+
+</mapper>

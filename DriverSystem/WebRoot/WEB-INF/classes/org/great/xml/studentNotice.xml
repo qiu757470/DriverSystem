@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管平台对学员公告表操作xml文件 -->
+<mapper  namespace="org.great.mapper.StudentNoticeMapper">
+
+	  <delete id="deleteByStudentId" parameterType="java.lang.String">
+	  	delete from student_notice where student_id = #{student_id}
+	  </delete>
+	  
+	  <select id="findByStudentId" resultType="org.great.bean.StudentNotice" parameterType="java.lang.String">
+	  	select * from student_notice where student_id = #{student_id}
+	  </select>
+	  
+	  <insert id="addStudentNotice" parameterType="org.great.bean.StudentNotice">
+            insert into student_notice (trans_notice_id,student_id,student_notice_state)values
+           (#{trans_notice_id},#{student_id},'未读')
+      </insert>
+         
+      <delete id="delStudentNotic" parameterType="java.lang.String">
+         delete from student_notice where trans_notice_id=#{trans_notice_id}
+      </delete>
+</mapper>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管人员自身的后台的数据库调用的xml -->
+<mapper namespace="org.great.mapper.TransNoticeMapper">
+	<select  id="getUnreadNotice" resultMap="Student">
+		select * from
+		trans_notice t left join STUDENT_NOTICE s on
+		t.trans_notice_id=s.trans_notice_id
+		left join student stu on
+		stu.student_id=s.student_id
+		where s.STUDENT_NOTICE_STATE=#{isRead}
+	</select>
+	<resultMap type="org.great.bean.Student" id="Student">
+		<result property="student_id" column="student.student_id"></result>
+		<collection property="transNotices" resultMap="transNotices"></collection>
+	</resultMap>
+	<resultMap type="org.great.bean.TransNotice" id="transNotices">
+		<result property="trans_notice_id" column="trans_notice_id"></result>
+		<result property="trans_notice_theme" column="trans_notice_theme"></result>
+		<result property="trans_notice_content" column="trans_notice_content"></result>
+		<result property="trans_notice_time" column="trans_notice_time"></result>
+		<result property="trans_notice_province" column="trans_notice_province"></result>
+	</resultMap>
+	<select id="selectByClickTransNoticeId" resultType="org.great.bean.TransNotice">
+		select * from
+		trans_notice where trans_notice_id=#{click_trans_notice_id}
+	</select>
+	<update id="upDateIsRead">
+		update STUDENT_NOTICE set STUDENT_NOTICE_STATE=#{isRead}
+		where
+		trans_notice_id=#{click_trans_notice_id}
+	</update>
+	
+	<!-- 通过驾校管理员id删除 -->
+	<delete id="deleteByManagerId" parameterType="java.lang.String">
+		delete from trans_notice where school_manager_id = #{school_manager_id}
+	</delete>
+	
+	<!-- 通过驾校管理员id查找 -->
+	<select id="findByManagerId" parameterType="java.lang.String" resultType="org.great.bean.TransNotice">
+		select * from trans_notice where school_manager_id = #{school_manager_id}
+	</select>
+	
+	
+	<!-- 查找所有的公告 -->
+	<select id="findAllNotice" resultType="org.great.bean.TransNotice">
+		select * from trans_notice 
+		<if test="noticeOrderType != null and noticeOrderType != '' and noticeOrderType != 'defaultOrder'">
+   			order by ${noticeOrderType} ${orderSeq}
+   	    </if>
+	</select>
+	<!-- 查找公告的总条数 -->
+	<select id="getAllNotice" resultType="java.lang.String">
+		select max(rownum) from trans_notice
+	</select>
+	<!-- 删除某条公告 -->
+	<delete id="deleteNoticeById" parameterType="java.lang.String"> 
+	    delete from trans_notice where trans_notice_id=#{trans_notice_id}
+	</delete>
+	<!-- 根据公告id查找到某条公告以及运管人员 -->
+	<select id="findById" resultType="org.great.bean.NoticeAndTransuser"  parameterType="java.lang.String">
+	     select * from trans_user t left join trans_notice n on t.trans_user_id = n.trans_user_id
+	     where trans_notice_id=#{trans_notice}  
+	</select>
+	<!-- 根据公告的主题找到某条公告  做发布公告用的 -->
+	<select id="oneNotice" resultType="org.great.bean.TransNotice" parameterType="java.lang.String">
+	     select * from trans_notice where trans_notice_theme=#{trans_notice_theme}
+	</select>
+	<!-- 增加一条公告 发布公告 -->
+	<insert id="addNoticeByBean" parameterType="org.great.bean.TransNotice">
+	     insert into trans_notice values (SEQ_TRANS_NOTICE.nextval,#{trans_notice_theme},#{trans_notice_content},#{trans_notice_time},#{trans_notice_province},
+	     #{trans_notice_city},#{trans_notice_target},#{trans_user_id},null)
+	</insert>
+	<select id="noticeId" resultType="java.lang.String">
+	  select seq_trans_notice.currval from dual
+	</select>
+     <!-- 符合搜索条件的数据条数 -->
+	 <select id="searchNotice" resultType="org.great.bean.TransNotice" parameterType="map">
+	    select * from trans_notice 
+	      <where>
+	       1=1
+	       <if test="theme != null and theme !='' " >
+             AND trans_notice_theme like  concat(concat('%',#{theme}),'%') 
+           </if>
+           <if test="time != null and time !='' ">
+             AND trans_notice_time  like  concat(#{time},'%') 
+           </if>
+           <if test="province != null and province !='' and province !='全部' " >
+             AND trans_notice_province = #{province}   
+           </if>
+           <if test="city != null and city !=''  and city !='全部'" >
+             AND trans_notice_city = #{city}   
+           </if>
+           <if test="target != null and target !='' and target !='全部'" >
+             AND trans_notice_target = #{target}   
+           </if>
+	      </where>
+	      <if test="noticeOrderType != null and noticeOrderType != '' and noticeOrderType != 'defaultOrder'">
+   			order by ${noticeOrderType} ${orderSeq}
+   	    </if>
+	 </select>
+	 
+	 <select id="findByTime" parameterType="java.lang.String" resultType="org.great.bean.TransNotice">
+	 	select * from trans_notice where trans_notice_time = #{trans_notice_time}
+	 </select>
+</mapper>

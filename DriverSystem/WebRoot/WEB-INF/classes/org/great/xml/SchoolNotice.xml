@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- 运管人员自身的后台的数据库调用的xml -->
+<mapper namespace="org.great.mapper.SchoolNoticeMapper">
+	<!-- 根据账号，密码查找到一个用户 -->
+	<select id="findNotice" resultType="org.great.bean.TransNotice">
+	select * from 
+	
+	(select c.*  from SCHOOL_NOTICE t  left join TRANS_NOTICE c on t.TRANS_NOTICE_ID=c.TRANS_NOTICE_ID where t.school_notice_state='未读'
+	
+	and school_id=#{school_id})
+	
+	<where>
+	and TRANS_NOTICE_TARGET='驾校'
+	<if test="trans_notice_province!='全部' ">
+	and trans_notice_province=#{trans_notice_province}
+	<if test="trans_notice_city!='全部' ">
+	and trans_notice_city=#{trans_notice_city}
+	</if>
+	</if>
+	</where>
+	</select>
+	<select id="findhasNotice" resultType="org.great.bean.TransNotice">
+	select * from 
+	
+	(select c.*  from SCHOOL_NOTICE t  left join TRANS_NOTICE c on t.TRANS_NOTICE_ID=c.TRANS_NOTICE_ID where t.school_notice_state='已读'
+	and school_id=#{school_id})
+	
+	<where>
+	and TRANS_NOTICE_TARGET='驾校'
+	<if test="trans_notice_province!='全部' ">
+	and trans_notice_province=#{trans_notice_province}
+	<if test="trans_notice_city!='全部' ">
+	and trans_notice_city=#{trans_notice_city}
+	</if>
+	</if>
+	</where>
+	</select>
+
+<update id="updatestu">
+update SCHOOL_NOTICE set school_notice_state ='已读' where TRANS_NOTICE_ID=#{trans_notice_id}
+
+</update>
+	
+	<select id="checkNotice" resultType="org.great.bean.TransNotice">
+	select * from TRANS_NOTICE where trans_notice_id=#{trans_notice_id}
+	</select>
+	<select id="NoticehasSend" resultType="org.great.bean.TransNotice">
+	select t.*  from TRANS_NOTICE t  left join SCHOOL_MANAGER c on t.SCHOOL_MANAGER_ID=c.SCHOOL_MANAGER_ID where c.SCHOOL_ID=#{SCHOOL_ID}
+	</select>
+
+	<select id="schoolCity" resultType="org.great.bean.School">
+	select * from school where school_id=#{school_id}
+	</select>
+	<select id="student" resultType="org.great.bean.StudentBean">
+	select * from student where school_id=#{school_id}
+	</select>
+
+
+<select id="selectmax" resultType="java.lang.String">
+
+select max(TRANS_NOTICE_ID) from TRANS_NOTICE
+
+</select>
+
+ <insert id="insertTnotice" >
+     <selectKey keyProperty="TRANS_NOTICE_ID" order="BEFORE" resultType="java.lang.String">
+     select SEQ_TRANS_NOTICE.nextval from dual
+     </selectKey>
+
+        insert into TRANS_NOTICE(trans_notice_id,trans_notice_theme,
+        						trans_notice_content,trans_notice_time,
+						       trans_notice_province,trans_notice_city,
+						       trans_notice_target,trans_user_id,
+						       school_manager_id)
+						       
+	values(SEQ_TRANS_NOTICE.nextval,#{trans_notice_theme},
+							#{trans_notice_content},#{trans_notice_time},
+							#{trans_notice_province},
+							#{trans_notice_city},#{trans_notice_target},
+							null,#{school_manager_id})  
+	</insert>
+	
+ <insert id="insertsNote" >
+
+        insert into STUDENT_NOTICE(trans_notice_id,student_id,student_notice_state)
+	values(#{max},#{student_id},'未读')  
+	</insert>
+
+
+	  <delete id="deleteBySchoolId" parameterType="java.lang.String">
+	  	delete from school_notice where school_id = #{school_id}
+	  </delete>
+	  
+	  <select id="findBySchoolId" parameterType="java.lang.String" resultType="org.great.bean.SchoolNotice">
+	  	select * from school_notice where school_id = #{school_id}
+	  </select>
+	  
+	  <!-- 插入驾校公告表 -->
+      <insert id="addSchoolNotice" parameterType="org.great.bean.SchoolNotice">
+           insert into school_notice (trans_notice_id,school_id,school_notice_state)values
+           (#{trans_notice_id},#{school_id},'未读')
+      </insert>
+      <!-- 根据公告id删除驾校公告表的数据 -->
+        <delete id="delSchoolNotice" parameterType="java.lang.String">
+            delete from school_notice where trans_notice_id=#{trans_notice_id}
+        </delete>
+
+</mapper>
